@@ -29,3 +29,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Localization
 
 Guide for localization can be found here https://angular.io/guide/i18n-overview
+
+## Material design 
+
+This app is using material design https://material.angular.io/guide/getting-started
