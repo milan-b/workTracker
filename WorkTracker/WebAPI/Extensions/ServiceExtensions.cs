@@ -22,7 +22,7 @@ namespace WebAPI.Extensions
         public static void ConfigureDBContext(this IServiceCollection services, IConfiguration config)
         {
             var connectionString = config["ConnectionStrings:Local"];
-            services.AddDbContext<RepositoryContext>(o => o.UseSqlite(connectionString));
+            services.AddDbContext<RepositoryContext>(o => o.UseSqlite(connectionString, b => b.MigrationsAssembly("WebAPI")));
         }
 
         public static void ConfigureRepositoryWrapper(this IServiceCollection services)
