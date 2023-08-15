@@ -22,5 +22,10 @@ https://code-maze.com/async-generic-repository-pattern/
 	*	`dotnet ef database update --project WebAPI`
 
 ### Delete DB
-	`drop-database -context [contextName]`
+	`dotnet ef drop-database -context RepositoryContext --project WebAPI`
+
+	==============================================TODO=========================
+
+	*	add date created, and user u sve tabele  - ima u hrani
+	*	
 

@@ -20,7 +20,7 @@ namespace Entities.Models
         public bool IsApproved { get; set; }
 
         [ForeignKey(nameof(Project))]
-        public Guid ProjectId { get; set; }
+        public int ProjectId { get; set; }
         public Project? Project { get; set; }
 
         public ICollection<WorkLogEntry>? WorkLogEntries { get; set; }

@@ -6,7 +6,7 @@ namespace Entities.Models
     [Table("category")]
     public class ProductCategory
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
 
         [StringLength(60, ErrorMessage = "Name can't be longer than 60 characters")]
@@ -15,7 +15,7 @@ namespace Entities.Models
 
 
         [ForeignKey(nameof(ProductCategory))]
-        public Guid ParentId { get; set; }
+        public int ParentId { get; set; }
         public ProductCategory? Parent { get; set; }
 
         public ICollection<Product>? Products { get; set; }

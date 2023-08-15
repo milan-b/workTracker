@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace WebAPI.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20230813222601_InitMigration")]
+    [Migration("20230815224933_InitMigration")]
     partial class InitMigration
     {
         /// <inheritdoc />
@@ -22,17 +22,17 @@ namespace WebAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.Product", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ProductCategoryId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("ProductCategoryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Units")
                         .IsRequired()
@@ -47,17 +47,17 @@ namespace WebAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.ProductCategory", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ParentId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("ParentId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -68,9 +68,9 @@ namespace WebAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.Project", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
@@ -96,8 +96,8 @@ namespace WebAPI.Migrations
                     b.Property<bool>("IsApproved")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("ProjectId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -118,8 +118,8 @@ namespace WebAPI.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Unit")
                         .IsRequired()
