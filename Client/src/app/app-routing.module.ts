@@ -6,11 +6,12 @@ const routes: Routes = [
     path: 'material-category',
     loadChildren: () => import('./material-category/material-category.module').then(m => m.MaterialCategoryModule)
   },
-  {
-    path: '',
-    redirectTo: '',
-    pathMatch: 'full'
-  }
+  { path: 'project', loadChildren: () => import('./project/project.module').then(m => m.ProjectModule) },
+  // {
+  //   path: '',
+  //   redirectTo: '',
+  //   pathMatch: 'full'
+  // }
 ];
 
 @NgModule({
