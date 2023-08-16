@@ -1,3 +1,4 @@
+ ovde stao https://medium.com/@redin.gaetan/angular-for-everyone-chapter-4-services-61beaa998a86
 # Client
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.8.

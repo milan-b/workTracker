@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { NavigationComponent } from './navigation/navigation.component';
-import { MaterialModule } from '../shared/material/material.module';
 import { LayoutComponent } from './layout/layout.component';
+import { SharedModule } from '../shared';
 
 
 
@@ -14,9 +12,7 @@ import { LayoutComponent } from './layout/layout.component';
     LayoutComponent
   ],
   imports: [
-    CommonModule,
-    MaterialModule,
-    HttpClientModule,
+    SharedModule
   ],
   exports:[
     NavigationComponent,
