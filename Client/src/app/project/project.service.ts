@@ -10,11 +10,11 @@ export class ProjectService {
 
   constructor(private dataService: DataService) { }
 
-  getAll(): Observable<Project[] | undefined> {
+  getAll(): Observable<Project[] | null> {
     return this.dataService.getAll<Project[]>('Project')
       .pipe(
-        map(items => //items.body)
-          items.body?.sort((a, b) => (a.name.toLowerCase() >= b.name.toLocaleLowerCase() ? 1 : -1)))
+        map(items => 
+          items.body)
       );
   }
 }

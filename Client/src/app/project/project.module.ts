@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 
 import { ProjectRoutingModule } from './project-routing.module';
-import { ProjectComponent } from './project/project.component';
 import { SharedModule } from '../shared';
+import { ListComponent } from './list/list.component';
+
 
 
 
 @NgModule({
   declarations: [
-    ProjectComponent
+    ListComponent
   ],
   imports: [
     ProjectRoutingModule,

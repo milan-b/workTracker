@@ -1,21 +1,20 @@
 import { DataSource } from '@angular/cdk/collections';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { ProjectService } from '../project.service';
+import { Observable, merge } from 'rxjs';
 import { Project } from '../project.model';
-
-
-
+import { ProjectService } from '../project.service';
 
 /**
- * Data source for the Project view. This class should
+ * Data source for the List view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class ProjectDataSource extends DataSource<Project> {
-  // paginator: MatPaginator | undefined;
+export class ListDataSource extends DataSource<Project> {
+  paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
+  data: Project[] = [];
 
   constructor(private projectService : ProjectService) {
     super();
@@ -27,19 +26,16 @@ export class ProjectDataSource extends DataSource<Project> {
    * @returns A stream of the items to be rendered.
    */
   connect(): Observable<Project[]> {
-    // // if (this.paginator && this.sort) {
-      if (this.sort) {
-      return this.projectService.getAll().pipe(
-        map(
-          data => {
-            let records: Project[] = [];
-            if(data){
-              records = this.getSortedData(data);
-            }
-            return records;
+    if (this.sort) {
+      // Combine everything that affects the rendered data into one update
+      // stream for the data-table to consume.
+      return merge(this.projectService.getAll(), this.sort.sortChange)
+        .pipe(map(data => {
+          if(Array.isArray(data)){
+            this.data = [...data];
           }
-        )
-      );
+          return this.getSortedData(this.data);
+        }));
     } else {
       throw Error('Please set the paginator and sort on the data source before connecting.');
     }
@@ -55,7 +51,7 @@ export class ProjectDataSource extends DataSource<Project> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  // private getPagedData(data: ProjectItem[]): ProjectItem[] {
+  // private getPagedData(data: ListItem[]): ListItem[] {
   //   if (this.paginator) {
   //     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
   //     return data.splice(startIndex, this.paginator.pageSize);
@@ -65,8 +61,7 @@ export class ProjectDataSource extends DataSource<Project> {
   // }
 
   /**
-   * Sort the data (client-side). If you're using server-side sorting,
-   * this would be replaced by requesting the appropriate data from the server.
+   * Sort the data (client-side). 
    */
   private getSortedData(data: Project[]): Project[] {
     if (!this.sort || !this.sort.active || this.sort.direction === '') {
@@ -77,6 +72,7 @@ export class ProjectDataSource extends DataSource<Project> {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
         case 'name': return compare(a.name, b.name, isAsc);
+        case 'createdDate': return compare('' + a.createdDate, '' + b.createdDate, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
         default: return 0;
       }
