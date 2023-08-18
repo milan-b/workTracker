@@ -1,12 +1,4 @@
-ovde stao https://code-maze.com/net-core-web-development-part5/
-# API
-
-## Best practices
-https://code-maze.com/aspnetcore-webapi-best-practices/
-https://code-maze.com/net-core-series/
-
-## Authentication
-https://code-maze.com/authentication-aspnetcore-jwt-1/
+# DB
 
 ## Repository pattern
 https://code-maze.com/async-generic-repository-pattern/
@@ -27,5 +19,3 @@ https://code-maze.com/async-generic-repository-pattern/
 	==============================================TODO=========================
 
 	*	add date created, and user u sve tabele  - ima u hrani
-	*	
-

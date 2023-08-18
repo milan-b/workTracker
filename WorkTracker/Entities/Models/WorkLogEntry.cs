@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Entities.Models
 {
     [Table("work_log_entry")]
-    public class WorkLogEntry
+    public class WorkLogEntry: BaseEntity
     {
         public Guid Id { get; set; }
 

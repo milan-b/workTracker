@@ -7,7 +7,7 @@ using System.Security.Principal;
 namespace Entities.Models
 {
     [Table("work_log")]
-    public class WorkLog
+    public class WorkLog: BaseEntity
     {
         public Guid Id { get; set; }
 

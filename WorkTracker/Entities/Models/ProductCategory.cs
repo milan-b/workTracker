@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Entities.Models
 {
     [Table("category")]
-    public class ProductCategory
+    public class ProductCategory: BaseEntity
     {
         public int Id { get; set; }
 
