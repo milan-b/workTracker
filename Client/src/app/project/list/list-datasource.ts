@@ -33,6 +33,7 @@ export class ListDataSource extends DataSource<Project> {
         .pipe(map(data => {
           if(Array.isArray(data)){
             this.data = [...data];
+            
           }
           return this.getSortedData(this.data);
         }));
