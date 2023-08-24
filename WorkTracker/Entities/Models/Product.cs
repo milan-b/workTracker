@@ -13,7 +13,7 @@ namespace Entities.Models
 
         [Required]
         [StringLength(60, ErrorMessage = "Name can't be longer than 60 characters")]
-        public String? Name { get; set; }
+        public String Name { get; set; }
 
         [Required]
         // Example "m, mm, cm, km"
