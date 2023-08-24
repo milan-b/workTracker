@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Entities.Models
 {
     [Table("work_log_entry")]
-    public class WorkLogEntry
+    public class WorkLogEntry: BaseEntity
     {
         public Guid Id { get; set; }
 
@@ -20,7 +20,7 @@ namespace Entities.Models
 
         [Required]
         [ForeignKey(nameof(Product))]
-        public Guid ProductId { get; set; }
+        public int ProductId { get; set; }
         public Product? Product { get; set; }
 
         [Required]

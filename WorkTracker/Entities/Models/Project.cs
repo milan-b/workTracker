@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 namespace Entities.Models
 {
     [Table("project")]
-    public class Project
+    public class Project: BaseEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required] 
         public String? Name { get; set; }

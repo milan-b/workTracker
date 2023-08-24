@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { DataService } from '../core/services/data.service';
+import { DataService } from '../shared';
 import { Project } from './project.model';
 import { Observable, map } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +10,17 @@ export class ProjectService {
 
   constructor(private dataService: DataService) { }
 
-  getAll(): Observable<Project[] | undefined> {
-    return this.dataService.getAll<Project[]>('Project')
+  private url = 'project';
+
+  getAll(): Observable<Project[] | null> {
+    return this.dataService.getAll<Project[]>(this.url)
       .pipe(
-        map(items => items.body?.sort((a, b) => (a.name.toLowerCase() >= b.name.toLocaleLowerCase() ? 1 : -1)))
+        map(items => 
+          items.body)
       );
   }
 
+  create(project: Project):Observable<Object>{
+    return this.dataService.post(this.url, project);
+  }
 }

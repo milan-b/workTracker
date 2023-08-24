@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Entities.Models
 {
     [Table("product")]
-    public class Product
+    public class Product: BaseEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
 
         [Required]
@@ -21,7 +21,7 @@ namespace Entities.Models
 
         [Required]
         [ForeignKey(nameof(ProductCategory))]
-        public Guid ProductCategoryId { get; set; }
+        public int ProductCategoryId { get; set; }
         public ProductCategory? ProductCategory { get; set; }
     }
 }

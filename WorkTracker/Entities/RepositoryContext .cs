@@ -16,5 +16,66 @@ namespace Entities
         public DbSet<WorkLog>? WorkLogs { get; set; }
         public DbSet<WorkLogEntry>? WorkLogEntries { get; set; }
         public DbSet<ProductCategory>? ProductCategories { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
+            base.OnModelCreating(modelBuilder);
+
+
+            #region Query Filter
+
+            modelBuilder.Entity<Project>()
+            .HasQueryFilter(post => EF.Property<bool>(post, "IsDeleted") == false);
+
+            #endregion
+        }
+
+
+        #region Soft Delete and time stamps
+        public override int SaveChanges(bool acceptAllChangesOnSuccess)
+        {
+            OnBeforeSaving();
+
+            return base.SaveChanges(acceptAllChangesOnSuccess);
+        }
+
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            OnBeforeSaving();
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
+        private void OnBeforeSaving()
+        {
+            foreach (var entry in ChangeTracker.Entries())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.CurrentValues["IsDeleted"] = false;
+                        entry.CurrentValues["CreatedDate"] = DateTime.UtcNow;
+                        entry.CurrentValues["UpdatedDate"] = DateTime.UtcNow;
+                        break;
+
+                    case EntityState.Modified:
+                        entry.CurrentValues["UpdatedDate"] = DateTime.UtcNow;
+                        break;
+
+                    case EntityState.Deleted:
+                        entry.State = EntityState.Modified;
+                        entry.CurrentValues["IsDeleted"] = true;
+                        break;
+                }
+            }
+
+        }
+        #endregion
     }
 }
+

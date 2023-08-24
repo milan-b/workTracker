@@ -1,14 +1,22 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { NavigationComponent } from './navigation/navigation.component';
+import { LayoutComponent } from './layout/layout.component';
+import { SharedModule } from '../shared';
+
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    NavigationComponent,
+    LayoutComponent
+  ],
   imports: [
-    CommonModule,
-    HttpClientModule
+    SharedModule
+  ],
+  exports:[
+    NavigationComponent,
+    LayoutComponent
   ]
 })
 export class CoreModule { }

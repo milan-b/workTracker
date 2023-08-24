@@ -20,7 +20,9 @@ namespace Entities.Extensions
             return new ProjectDTO { 
                     Id = project.Id,
                     Name = project.Name,
-                    Description = project.Description
+                    Description = project.Description,
+                    CreatedDate = project.CreatedDate,
+                    UpdatedDate = project.UpdatedDate
                 };
         }
     }

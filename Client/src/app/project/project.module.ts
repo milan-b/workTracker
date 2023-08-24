@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { ProjectRoutingModule } from './project-routing.module';
-import { ProjectComponent } from './project.component';
+import { SharedModule } from '../shared';
+import { ListComponent } from './list/list.component';
+import { FormComponent } from './form/form.component';
+
+
+
 
 
 @NgModule({
   declarations: [
-    ProjectComponent
+    ListComponent,
+    FormComponent
   ],
   imports: [
-    CommonModule,
-    ProjectRoutingModule
+    ProjectRoutingModule,
+    SharedModule
   ]
 })
 export class ProjectModule { }

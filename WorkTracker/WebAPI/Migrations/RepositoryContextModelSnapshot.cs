@@ -19,20 +19,29 @@ namespace WebAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.Product", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ProductCategoryId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("ProductCategoryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Units")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -44,16 +53,25 @@ namespace WebAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.ProductCategory", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ParentId")
+                    b.Property<int>("ParentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -65,15 +83,24 @@ namespace WebAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.Project", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -87,13 +114,22 @@ namespace WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateOnly>("Date")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsApproved")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("ProjectId")
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -112,14 +148,23 @@ namespace WebAPI.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Note")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Unit")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("WorkLogId")
@@ -139,7 +184,7 @@ namespace WebAPI.Migrations
                     b.HasOne("Entities.Models.ProductCategory", "ProductCategory")
                         .WithMany("Products")
                         .HasForeignKey("ProductCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("ProductCategory");
@@ -150,7 +195,7 @@ namespace WebAPI.Migrations
                     b.HasOne("Entities.Models.ProductCategory", "Parent")
                         .WithMany()
                         .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Parent");
@@ -161,7 +206,7 @@ namespace WebAPI.Migrations
                     b.HasOne("Entities.Models.Project", "Project")
                         .WithMany("WorkLogs")
                         .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Project");
@@ -172,13 +217,13 @@ namespace WebAPI.Migrations
                     b.HasOne("Entities.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Entities.Models.WorkLog", "WorkLog")
                         .WithMany("WorkLogEntries")
                         .HasForeignKey("WorkLogId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Product");

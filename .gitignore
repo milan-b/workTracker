@@ -1,2 +1,4 @@
 WorkTracker/.vs/
 WorkTracker/obj/
+WorkTracker/WebAPI/db/localdb.db-shm
+WorkTracker/WebAPI/db/localdb.db-wal
