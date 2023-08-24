@@ -7,6 +7,7 @@ import { NotificationsService } from 'src/app/shared';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import * as routs from 'src/app/routs';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -16,8 +17,13 @@ import * as routs from 'src/app/routs';
 })
 export class FormComponent implements OnInit {
 
-  id: string | undefined;
+  id: string | null = null;
   title = 'New';
+
+  projectForm = this.formBuilder.group({
+    name: ['', Validators.required],
+    description: ''
+  });
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,31 +33,42 @@ export class FormComponent implements OnInit {
     private router: Router) { }
 
 
-    ngOnInit(): void {
-      const id = this.route.snapshot.paramMap.get('id');
-      if(id){
-        this.title = 'Edit';
-        // TODO get record and create form
-      }
-      console.log(id);
+  ngOnInit(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id) {
+      this.title = 'Edit';
+      this.projectService.get(+this.id).subscribe({
+        next: project => {
+          this.projectForm.patchValue({
+            name: project?.name,
+            description: project?.description
+          });
+        },
+        error: () => {
+          this.notificationService.showError('Error while getting project.');
+          this.router.navigate([routs.PROJECT]);
+        }
+      })
+
+
+    }
+    console.log(this.id);
   }
 
 
-  projectForm = this.formBuilder.group({
-    name: ['', Validators.required],
-    description: ''
-  });
 
-  hasUnitNumber = false;
 
 
   onSubmit(): void {
     if (this.projectForm.valid) {
-      this.projectService.create(this.getModelFromForm())
-        .subscribe(() => {
-          this.notificationService.showInfo(`Project ${this.projectForm.value.name} is created.`);
-          this.router.navigate([routs.PROJECT]);
-        });
+      console.log(this.id, this.id? true : false, 'ovo je snimljeno');
+      let request = this.id ?
+        this.projectService.update(this.getModelFromForm(), +this.id) :
+        this.projectService.create(this.getModelFromForm());
+      request.subscribe(() => {
+        this.notificationService.showInfo(`Project ${this.projectForm.value.name} is saved.`);
+        this.router.navigate([routs.PROJECT]);
+      });
     }
     console.log(this.projectForm.value);
   }

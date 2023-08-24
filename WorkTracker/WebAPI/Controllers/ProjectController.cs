@@ -20,6 +20,14 @@ namespace WebAPI.Controllers
             _repository = repository;
         }
 
+        [HttpGet("{id:int:min(1)}")]
+        public async Task<IActionResult> Get([FromRoute] int id)
+        {
+            var project = await _repository.Project.FindByCondition(o => o.Id == id).FirstOrDefaultAsync();
+
+            return project == null ? NotFound() : Ok(project);
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

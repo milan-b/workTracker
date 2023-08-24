@@ -31,6 +31,16 @@ export class DataService {
     return this.http.get<T>(environment.apiUrl + url, { observe: 'response', params: params });
   }
 
+  /**
+     * Perform http get 
+     *
+     * @param {string} url    URL
+     * @param {string} id 
+     */
+  getById<T>(url: string, id: string): Observable<T> {
+    return this.http.get<T>(environment.apiUrl + url + '/' + id);
+  }
+
   post(url: string, data: any): Observable<Object> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -38,5 +48,14 @@ export class DataService {
       }),
       };
     return this.http.post(environment.apiUrl + url, data, httpOptions);
+  }
+
+  put(url: string, data: any): Observable<Object> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      };
+    return this.http.put(environment.apiUrl + url, data, httpOptions);
   }
 }
