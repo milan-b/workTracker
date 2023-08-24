@@ -1,9 +1,9 @@
-export let routs: any = {
-    HOME: '/',
 
-    PROJECT: 'project',
-    PROJECT_CREATE: 'project/form',
+    export const HOME = '';
+    export const  CREATE = 'create';
+    export const  EDIT = 'edit/:id';
 
-    MATERIAL_CATEGORY: 'material-category'
+    export const  PROJECT =  'project';
+    export const  PROJECT_CREATE = PROJECT + '/' + CREATE;
 
-}
+    export const  MATERIAL_CATEGORY = 'material-category'

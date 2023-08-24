@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, Validators } from '@angular/forms';
 import { ProjectService } from '../project.service';
 import { Project } from '../project.model';
 import { NotificationsService } from 'src/app/shared';
 import { Router } from '@angular/router';
-import { routs } from 'src/app/routs';
+import { ActivatedRoute } from '@angular/router';
+import * as routs from 'src/app/routs';
 
 
 @Component({
@@ -13,16 +14,28 @@ import { routs } from 'src/app/routs';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
+
+  id: string | undefined;
+  title = 'New';
 
   constructor(
     private formBuilder: FormBuilder,
     private projectService: ProjectService,
     private notificationService: NotificationsService,
+    private route: ActivatedRoute,
     private router: Router) { }
 
 
-  title = 'New';
+    ngOnInit(): void {
+      const id = this.route.snapshot.paramMap.get('id');
+      if(id){
+        this.title = 'Edit';
+        // TODO get record and create form
+      }
+      console.log(id);
+  }
+
 
   projectForm = this.formBuilder.group({
     name: ['', Validators.required],
@@ -38,10 +51,7 @@ export class FormComponent {
         .subscribe(() => {
           this.notificationService.showInfo(`Project ${this.projectForm.value.name} is created.`);
           this.router.navigate([routs.PROJECT]);
-        }
-          //TODO handle success - show success message, handle error - error message (maybe globaly)
-          //redirect to list or to view
-        );
+        });
     }
     console.log(this.projectForm.value);
   }
