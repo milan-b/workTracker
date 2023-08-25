@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
         {
             var project = await _repository.Project.FindByCondition(o => o.Id == id).FirstOrDefaultAsync();
 
-            return project == null ? NotFound() : Ok(project);
+            return project == null ? NotFound() : Ok(project.ToDTO());
         }
 
         [HttpGet]

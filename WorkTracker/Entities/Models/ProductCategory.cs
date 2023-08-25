@@ -15,7 +15,7 @@ namespace Entities.Models
 
 
         [ForeignKey(nameof(ProductCategory))]
-        public int ParentId { get; set; }
+        public int? ParentId { get; set; }
         public ProductCategory? Parent { get; set; }
 
         public ICollection<Product>? Products { get; set; }

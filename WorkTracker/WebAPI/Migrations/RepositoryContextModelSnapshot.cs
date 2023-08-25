@@ -68,7 +68,7 @@ namespace WebAPI.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ParentId")
+                    b.Property<int?>("ParentId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("UpdatedDate")
@@ -195,8 +195,7 @@ namespace WebAPI.Migrations
                     b.HasOne("Entities.Models.ProductCategory", "Parent")
                         .WithMany()
                         .HasForeignKey("ParentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Parent");
                 });
