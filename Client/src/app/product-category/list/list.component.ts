@@ -2,14 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { ProductCategoryService } from '../product-category.service';
-import { ProductCategory } from '../product-category.model';
-
-/** File node data with possible child nodes. */
-export interface FileNode {
-  name: string;
-  type: string;
-  children?: FileNode[];
-}
+import { TreeNode } from 'src/app/shared';
 
 /**
  * Flattened tree node that has been created from a FileNode through the flattener. Flattened
@@ -33,10 +26,10 @@ export class ListComponent implements OnInit {
   treeControl: FlatTreeControl<FlatTreeNode>;
 
   /** The TreeFlattener is used to generate the flat list of items from hierarchical data. */
-  treeFlattener: MatTreeFlattener<FileNode, FlatTreeNode>;
+  treeFlattener: MatTreeFlattener<TreeNode, FlatTreeNode>;
 
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
-  dataSource: MatTreeFlatDataSource<FileNode, FlatTreeNode>;
+  dataSource: MatTreeFlatDataSource<TreeNode, FlatTreeNode>;
 
   constructor(private productCategoryService: ProductCategoryService) {
     this.treeFlattener = new MatTreeFlattener(
@@ -47,35 +40,18 @@ export class ListComponent implements OnInit {
 
     this.treeControl = new FlatTreeControl(this.getLevel, this.isExpandable);
     this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-    //this.dataSource.data = files;
   }
 
   ngOnInit(): void {
     this.productCategoryService.getAll().subscribe(data => {
-      console.log(data);
       if (data) {
-        let root = data.find(i => i.id == 1);
-        if(root){
-          let dataSource = this.mapProductCategoryToFileNode(root, data).children;
-          this.dataSource.data = dataSource ? dataSource : [];
-        }
-        console.log(this.dataSource.data, "\n ovo je parsiran ulaz");
+        this.dataSource.data = [data];
       }
-    })
-  }
-
-  mapProductCategoryToFileNode(productCategory: ProductCategory, productCategories: ProductCategory[]): FileNode{
-    let children = productCategories.filter(i => i.parentId === productCategory.id)
-    .map((c => this.mapProductCategoryToFileNode(c, productCategories)));
-    return {
-      name: productCategory.name,
-      type: 'folder',
-      children: children
-    }
+    });
   }
 
   /** Transform the data to something the tree can read. */
-  transformer(node: FileNode, level: number): FlatTreeNode {
+  transformer(node: TreeNode, level: number): FlatTreeNode {
     return {
       name: node.name,
       type: 'folder',
@@ -100,7 +76,7 @@ export class ListComponent implements OnInit {
   }
 
   /** Get the children for the node. */
-  getChildren(node: FileNode): FileNode[] | null | undefined {
+  getChildren(node: TreeNode): TreeNode[] | null | undefined {
     return node.children;
   }
 }

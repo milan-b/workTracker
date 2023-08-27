@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DataService } from '../shared';
+import { DataService, TreeNode } from '../shared';
 import { ProductCategory } from './product-category.model';
 import { Observable, map } from 'rxjs';
 
@@ -12,11 +12,10 @@ export class ProductCategoryService {
 
   private url = 'product-category';
 
-  getAll(): Observable<ProductCategory[] | null> {
+  getAll(): Observable<TreeNode | undefined> {
     return this.dataService.getAll<ProductCategory[]>(this.url)
       .pipe(
-        map(items => 
-          items.body)
+        map(items => this.productCategoriesToTreeNode(items.body))   
       );
   }
 
@@ -31,4 +30,27 @@ export class ProductCategoryService {
   update(productCategory: ProductCategory, id: number): Observable<Object>{
     return this.dataService.put(this.url + '/' + id, productCategory);
   }
+
+  private productCategoriesToTreeNode(productCategories :ProductCategory[] | null): TreeNode | undefined{
+    let result: TreeNode | undefined= undefined;
+    if (productCategories) {
+      let root = productCategories.find(i => i.id == 1);
+      if(root){
+        result = this.mapProductCategoryToFileNode(root, productCategories);
+      }
+    }
+    return result;
+  }
+
+  private mapProductCategoryToFileNode(productCategory: ProductCategory, productCategories: ProductCategory[]): TreeNode{
+    let children = productCategories.filter(i => i.parentId === productCategory.id)
+    .map((c => this.mapProductCategoryToFileNode(c, productCategories)));
+    return {
+      id: productCategory.id!,
+      name: productCategory.name,
+      children: children
+    }
+  }
+
+
 }
