@@ -25,7 +25,6 @@ export class ProjectService {
     return this.dataService.getById<Project>(this.url, '' + id);
   }
 
-  // TODO vidjeti kako rijesiti problem sa vremenom - vjerovatno je rijeseno u hrani
   create(project: Project):Observable<Object>{
     return this.dataService.post(this.url, project);
   }

@@ -5,4 +5,4 @@
 
     export const  PROJECT =  'project';
    
-    export const  MATERIAL_CATEGORY = 'material-category'
+    export const  PRODUCT_CATEGORY = 'product-category'
