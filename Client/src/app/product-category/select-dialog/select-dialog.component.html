@@ -1,0 +1,9 @@
+<h1 class="title" mat-dialog-title i18n>Select product category </h1>
+<div mat-dialog-content>
+    <p i18n>Slected: <strong *ngIf="selectedItem">{{selectedItem.name}}</strong></p>
+    <app-list [isSelect]="true" (selectEvent)="onSelect($event)" class="list"></app-list>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button [mat-dialog-close]="selectedItem" cdkFocusInitial i18n>Ok</button>
+</div>

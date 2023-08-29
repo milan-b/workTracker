@@ -9,16 +9,21 @@
   </mat-tree-node>
 
   <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
-    <button mat-icon-button matTreeNodeToggle
-            [attr.aria-label]="'Toggle ' + node.name">
+    <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
       <mat-icon class="mat-icon-rtl-mirror">
         {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
       </mat-icon>
     </button>
-    <mat-icon class="type-icon" [attr.aria-label]="node.type + 'icon'">
+    <mat-icon (click)="select(node)" class="type-icon" [attr.aria-label]="node.type + 'icon'">
       <!-- {{ node.type ==='file' ? 'description' : 'folder' }} -->
       folder
     </mat-icon>
-    {{node.name}}
+
+    <span *ngIf="isSelect;then link;else content"></span>
+
+    <ng-template #link><a href="javascript:;" (click)="select(node)">{{node.name}}</a></ng-template>
+
+    <ng-template #content>{{node.name}}</ng-template>
+
   </mat-tree-node>
 </mat-tree>

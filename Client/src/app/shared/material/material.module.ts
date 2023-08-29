@@ -15,6 +15,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatTreeModule } from '@angular/material/tree';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { MatTreeModule } from '@angular/material/tree';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
-    MatTreeModule
+    MatTreeModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule { }
