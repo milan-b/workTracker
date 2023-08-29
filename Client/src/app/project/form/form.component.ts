@@ -7,7 +7,6 @@ import { NotificationsService } from 'src/app/shared';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import * as routs from 'src/app/routs';
-import { Observable } from 'rxjs';
 
 
 @Component({
@@ -49,15 +48,8 @@ export class FormComponent implements OnInit {
           this.router.navigate([routs.PROJECT]);
         }
       })
-
-
     }
-    console.log(this.id);
   }
-
-
-
-
 
   onSubmit(): void {
     if (this.projectForm.valid) {
