@@ -47,7 +47,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productCategoryService.getAll().subscribe(data => {
+    this.productCategoryService.getAllAsTreeNode().subscribe(data => {
       if (data) {
         this.dataSource.data = [data];
       }

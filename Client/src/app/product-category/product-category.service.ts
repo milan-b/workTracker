@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataService, TreeNode } from '../shared';
 import { ProductCategory } from './product-category.model';
-import { Observable, map } from 'rxjs';
+import { Observable, map, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,23 +12,56 @@ export class ProductCategoryService {
 
   private url = 'product-category';
 
-  getAll(): Observable<TreeNode | undefined> {
-    return this.dataService.getAll<ProductCategory[]>(this.url)
-      .pipe(
-        map(items => this.productCategoriesToTreeNode(items.body))   
-      );
+  private productCategories: ProductCategory[] | null = null;
+
+  getAll(): Observable<ProductCategory[] | null> {
+    if(this.productCategories){
+      return of(this.productCategories);
+    }
+    return this.refreshProductCategories();
   }
 
-  get(id: number):Observable<ProductCategory | null>{
-    return this.dataService.getById<ProductCategory>(this.url, '' + id);
+  getAllAsTreeNode(): Observable<TreeNode | undefined>{
+    return this.getAll().pipe(
+      map(
+        productCategories => this.productCategoriesToTreeNode(productCategories)
+      )
+    )
+  }
+
+  private refreshProductCategories(): Observable<ProductCategory[] | null>{
+    return this.dataService.getAll<ProductCategory[]>(this.url)
+    .pipe(
+      map(items =>{
+        console.log('categories from server : \n', items.body);
+        this.productCategories = items.body;
+        return this.productCategories;
+      })  
+    );
+  }
+
+  get(id: number):Observable<ProductCategory | undefined>{
+    return this.getAll().pipe(
+      map(
+        productCategories => productCategories?.find(productCategory => productCategory.id === id)
+      )
+    )
   }
 
   create(productCategory: ProductCategory):Observable<Object>{
-    return this.dataService.post(this.url, productCategory);
+    return this.dataService.post(this.url, productCategory).pipe(
+      tap(
+        () => this.refreshProductCategories()
+      )
+    );
   }
 
   update(productCategory: ProductCategory, id: number): Observable<Object>{
-    return this.dataService.put(this.url + '/' + id, productCategory);
+    return this.dataService.put(this.url + '/' + id, productCategory).pipe(
+      tap(
+        () => this.refreshProductCategories()
+      )
+    );
   }
 
   private productCategoriesToTreeNode(productCategories :ProductCategory[] | null): TreeNode | undefined{
