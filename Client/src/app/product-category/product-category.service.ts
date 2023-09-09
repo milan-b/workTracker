@@ -51,7 +51,7 @@ export class ProductCategoryService {
   create(productCategory: ProductCategory):Observable<Object>{
     return this.dataService.post(this.url, productCategory).pipe(
       tap(
-        () => this.refreshProductCategories()
+        () => this.productCategories = null
       )
     );
   }
@@ -59,7 +59,7 @@ export class ProductCategoryService {
   update(productCategory: ProductCategory, id: number): Observable<Object>{
     return this.dataService.put(this.url + '/' + id, productCategory).pipe(
       tap(
-        () => this.refreshProductCategories()
+        () => this.productCategories = null
       )
     );
   }

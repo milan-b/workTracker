@@ -53,7 +53,6 @@ export class FormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.projectForm.valid) {
-      console.log(this.id, this.id? true : false, 'ovo je snimljeno');
       let request = this.id ?
         this.projectService.update(this.getModelFromForm(), +this.id) :
         this.projectService.create(this.getModelFromForm());
@@ -62,7 +61,6 @@ export class FormComponent implements OnInit {
         this.router.navigate([routs.PROJECT]);
       });
     }
-    console.log(this.projectForm.value);
   }
 
   private getModelFromForm(): Project {

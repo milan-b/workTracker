@@ -79,6 +79,25 @@ export class FormComponent {
     }
 
   onSubmit(): void {
-    console.log(this.productCategoryForm.value);
+    console.log(this.productCategoryForm);
+    if (this.productCategoryForm.valid) {
+      let request = this.id ?
+        this.productCategoryService.update(this.getModelFromForm(this.productCategoryForm.value), +this.id) :
+        this.productCategoryService.create(this.getModelFromForm(this.productCategoryForm.value));
+      request.subscribe(() => {
+        this.notificationService.showInfo(`Product category ${this.productCategoryForm.value.name} is saved.`);
+        this.router.navigate([routs.PRODUCT_CATEGORY]);
+      });
+    }
   }
+
+
+
+  private getModelFromForm(formValue: {name?: string | null, parentId?: number | null}): ProductCategory {
+    return {
+      name: formValue.name!,
+      parentId: formValue.parentId!
+    }
+  }
+
 }
