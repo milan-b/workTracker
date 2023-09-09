@@ -14,6 +14,10 @@ const routes: Routes = [
     path: routs.PRODUCT_CATEGORY, 
     loadChildren: () => import('./product-category/product-category.module').then(m => m.ProductCategoryModule) 
   },
+  { 
+    path: routs.PRODUCT, 
+    loadChildren: () => import('./product/product.module').then(m => m.ProductModule) 
+  },
   
 
   { path: '**', redirectTo: routs.HOME }

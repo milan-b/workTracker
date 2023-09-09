@@ -3,3 +3,4 @@ WorkTracker/obj/
 WorkTracker/WebAPI/db/localdb.db-shm
 WorkTracker/WebAPI/db/localdb.db-wal
 WorkTracker/WebAPI/Migrations/
+WorkTracker/WebAPI/db/localdb.db

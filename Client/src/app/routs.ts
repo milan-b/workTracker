@@ -5,4 +5,6 @@
 
     export const  PROJECT =  'project';
    
-    export const  PRODUCT_CATEGORY = 'product-category'
+    export const  PRODUCT_CATEGORY = 'product-category';
+
+    export const  PRODUCT =  'product';
