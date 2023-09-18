@@ -34,7 +34,11 @@ export class ProductCategoryService {
     .pipe(
       map(items =>{
         console.log('categories from server : \n', items.body);
-        this.productCategories = items.body;
+        //this.productCategories = items.body;
+        this.productCategories = [];
+        items.body?.forEach(productCategory =>{
+          this.productCategories![productCategory.id!] = productCategory;
+        });
         return this.productCategories;
       })  
     );
