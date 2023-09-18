@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { ListDataSource } from './list-datasource';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
+import { ProductCategory, ProductCategoryService } from 'src/app/product-category';
 
 @Component({
   selector: 'app-list',
@@ -15,12 +16,22 @@ export class ListComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Product>;
 
-  constructor(private productService : ProductService){}
+  productCategories: ProductCategory[] | null = null;
+
+  constructor(
+    private productService : ProductService,
+    private productCategoryService: ProductCategoryService
+    ){
+      this.productCategoryService.getAll().subscribe(result => {
+        this.productCategories = result;
+        this.displayedColumns.push('productCategory');
+      });
+    }
 
   dataSource = new ListDataSource(this.productService);
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = [ 'name', 'units'];
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;

@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8" >
   <table mat-table class="full-width-table" matSort  matSortActive="name" matSortDirection="asc" aria-label="Elements">
     <!-- Id Column -->
     <ng-container matColumnDef="id">
@@ -10,6 +10,18 @@
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header i18n>Name</th>
       <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <!-- Units Column -->
+    <ng-container matColumnDef="units">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header i18n>Units</th>
+      <td mat-cell *matCellDef="let row">{{row.units}}</td>
+    </ng-container>
+
+    <!-- Product Category Column -->
+    <ng-container matColumnDef="productCategory">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header i18n>Product category</th>
+      <td mat-cell *matCellDef="let row">{{productCategories![row.productCategoryId].name}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
