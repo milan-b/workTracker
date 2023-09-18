@@ -1,0 +1,51 @@
+<form [formGroup]="productForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title><h3 i18n>{{title}}</h3></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input i18n-placeholder="Name" matInput placeholder="Name" formControlName="name">
+            <mat-error i18n *ngIf="productForm.controls['name'].hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <!-- <mat-form-field class="full-width">
+            <input i18n-placeholder="Product category" matInput placeholder="Product category" formControlName="productCategoryId">
+            <mat-error i18n *ngIf="productForm.controls['productCategoryId'].hasError('required')">
+              Procut category <strong>required</strong>
+            </mat-error>
+          </mat-form-field> -->
+
+          <mat-form-field>
+            <mat-label i18n>Procut category</mat-label>
+            <mat-select formControlName="productCategoryId" i18n-placeholder="Procut category" placeholder="Procut category" (click)="openModal()">
+              <mat-option *ngFor="let productCategry of allProductCategories$ | async;" [value]="productCategry.id">
+                {{ productCategry.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error i18n *ngIf="productForm.controls['productCategoryId'].hasError('required')">
+              Procut category is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <input i18n-placeholder="Units" matInput placeholder="Units" formControlName="units">
+            <mat-error i18n *ngIf="productForm.controls['units'].hasError('required')">
+              Units is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          
+        </div>
+      </div>
+      
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" i18n>Save</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
