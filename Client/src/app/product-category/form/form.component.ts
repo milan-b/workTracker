@@ -30,7 +30,8 @@ export class FormComponent {
     parentId: this.formBuilder.control<number | undefined>({value: undefined, disabled: false})
   });
 
-  allProductCategories$: Observable<ProductCategory[]  | null>;
+  //allProductCategories$: Observable<ProductCategory[]  | null>;
+  productCategories: Map<number, ProductCategory> | null = null;
 
 
   constructor(
@@ -41,7 +42,10 @@ export class FormComponent {
     private router: Router,
     private dialog: MatDialog) 
     {
-      this.allProductCategories$ = this.productCategoryService.getAll();
+      //this.allProductCategories$ = this.productCategoryService.getAll();
+      this.productCategoryService.getAll().subscribe(result => {
+        this.productCategories = result;
+      });
     }
 
   ngOnInit(): void {

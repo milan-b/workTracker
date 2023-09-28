@@ -1,4 +1,4 @@
-<form [formGroup]="productCategoryForm" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="productCategoryForm" novalidate (ngSubmit)="onSubmit()" *ngIf="productCategories">
   <mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title>
@@ -17,11 +17,13 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label i18n>Parent</mat-label>
-            <mat-select formControlName="parentId" i18n-placeholder="Parent" placeholder="Parent" (click)="openModal()">
+            <!-- <mat-select formControlName="parentId" i18n-placeholder="Parent" placeholder="Parent" (click)="openModal()">
               <mat-option *ngFor="let productCategry of allProductCategories$ | async;" [value]="productCategry.id">
                 {{ productCategry.name }}
               </mat-option>
-            </mat-select>
+            </mat-select> -->
+            <input i18n-placeholder="Parent" (change)="openModal()" (click)="openModal()" matInput placeholder="Parent" 
+            [value]="productCategories!.get(productCategoryForm.controls['parentId'].value!)?.name">
           </mat-form-field>
         </div>
       </div>

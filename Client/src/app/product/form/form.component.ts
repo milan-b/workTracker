@@ -29,10 +29,14 @@ export class FormComponent implements OnInit {
     units: ['', Validators.required]
   });
 
+  // TODO productCategoryId ne valudira iz nekog razloga - ne dobijam poruku o gresci kada je prazan
+  // Moza je to zato sto nije postavljen form control name nigdje
+
   @ViewChild(MatSelect)
   productCategorySelect: MatSelect | undefined;
 
-  allProductCategories$: Observable<ProductCategory[]  | null>;
+  // allProductCategories$: Observable<ProductCategory[]  | null>;
+  productCategories: Map<number, ProductCategory> | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,7 +46,10 @@ export class FormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog) {
-      this.allProductCategories$ = this.productCategoryService.getAll();
+      // this.allProductCategories$ = this.productCategoryService.getAll();
+      this.productCategoryService.getAll().subscribe(result => {
+        this.productCategories = result;
+      });
      }
 
 
@@ -73,6 +80,7 @@ export class FormComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: TreeNode) => {
       this.productCategorySelect?.close();
+      console.log(result, 'result from modala');
       this.productForm.patchValue({
         productCategoryId: result?.id
       });
@@ -86,7 +94,7 @@ export class FormComponent implements OnInit {
         this.productService.create(this.getModelFromForm());
       request.subscribe(() => {
         this.notificationService.showInfo(`Product ${this.productForm.value.name} is saved.`);
-        this.router.navigate([routs.PROJECT]);
+        this.router.navigate([routs.PRODUCT]);
       });
     }
   }

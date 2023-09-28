@@ -12,9 +12,9 @@ export class ProductCategoryService {
 
   private url = 'product-category';
 
-  private productCategories: ProductCategory[] | null = null;
+  private productCategories: Map<number, ProductCategory> | null = null;
 
-  getAll(): Observable<ProductCategory[] | null> {
+  getAll(): Observable<Map<number, ProductCategory> | null> {
     if(this.productCategories){
       return of(this.productCategories);
     }
@@ -29,15 +29,16 @@ export class ProductCategoryService {
     )
   }
 
-  private refreshProductCategories(): Observable<ProductCategory[] | null>{
+  private refreshProductCategories(): Observable<Map<number, ProductCategory> | null>{
     return this.dataService.getAll<ProductCategory[]>(this.url)
     .pipe(
       map(items =>{
         console.log('categories from server : \n', items.body);
         //this.productCategories = items.body;
-        this.productCategories = [];
+        this.productCategories = new Map();
         items.body?.forEach(productCategory =>{
-          this.productCategories![productCategory.id!] = productCategory;
+          //this.productCategories![productCategory.id!] = productCategory;
+          this.productCategories!.set(productCategory.id!, productCategory);
         });
         return this.productCategories;
       })  
@@ -47,7 +48,7 @@ export class ProductCategoryService {
   get(id: number):Observable<ProductCategory | undefined>{
     return this.getAll().pipe(
       map(
-        productCategories => productCategories?.find(productCategory => productCategory.id === id)
+        productCategories => productCategories?.get(id)
       )
     )
   }
@@ -68,19 +69,19 @@ export class ProductCategoryService {
     );
   }
 
-  private productCategoriesToTreeNode(productCategories :ProductCategory[] | null): TreeNode | undefined{
+  private productCategoriesToTreeNode(productCategories :Map<number, ProductCategory> | null): TreeNode | undefined{
     let result: TreeNode | undefined= undefined;
     if (productCategories) {
-      let root = productCategories.find(i => i.id == 1);
+      let root = productCategories.get(1);
       if(root){
-        result = this.mapProductCategoryToFileNode(root, productCategories);
+        result = this.mapProductCategoryToFileNode(root, [...productCategories.values()]);
       }
     }
     return result;
   }
 
   private mapProductCategoryToFileNode(productCategory: ProductCategory, productCategories: ProductCategory[]): TreeNode{
-    let children = productCategories.filter(i => i.parentId === productCategory.id)
+    let children = productCategories.filter((value) => value.parentId === productCategory.id)
     .map((c => this.mapProductCategoryToFileNode(c, productCategories)));
     return {
       id: productCategory.id!,

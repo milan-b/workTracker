@@ -16,7 +16,7 @@ export class ListComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Product>;
 
-  productCategories: ProductCategory[] | null = null;
+  productCategories: Map<number, ProductCategory> | null = null;
 
   constructor(
     private productService : ProductService,

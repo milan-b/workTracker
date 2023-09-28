@@ -4,6 +4,7 @@ import { ProductRoutingModule } from './product-routing.module';
 import { SharedModule } from '../shared';
 import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
+import { ProductCategoryModule } from '../product-category';
 
 
 
@@ -15,6 +16,7 @@ import { FormComponent } from './form/form.component';
   ],
   imports: [
     SharedModule,
+   // ProductCategoryModule,
     ProductRoutingModule
   ]
 })

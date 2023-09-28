@@ -1,4 +1,4 @@
-<form [formGroup]="productForm" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="productForm" novalidate (ngSubmit)="onSubmit()" *ngIf="productCategories">
   <mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title><h3 i18n>{{title}}</h3></mat-card-title>
@@ -21,13 +21,10 @@
             </mat-error>
           </mat-form-field> -->
 
-          <mat-form-field>
-            <mat-label i18n>Procut category</mat-label>
-            <mat-select formControlName="productCategoryId" i18n-placeholder="Procut category" placeholder="Procut category" (click)="openModal()">
-              <mat-option *ngFor="let productCategry of allProductCategories$ | async;" [value]="productCategry.id">
-                {{ productCategry.name }}
-              </mat-option>
-            </mat-select>
+          <mat-form-field >
+            <mat-label i18n>Product category</mat-label>
+            <input  i18n-placeholder="Product category" (change)="openModal()" (click)="openModal()" matInput placeholder="Product category" 
+            [value]="productCategories!.get(productForm.controls['productCategoryId'].value!)?.name">
             <mat-error i18n *ngIf="productForm.controls['productCategoryId'].hasError('required')">
               Procut category is <strong>required</strong>
             </mat-error>
