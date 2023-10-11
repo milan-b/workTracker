@@ -18,6 +18,10 @@ const routes: Routes = [
     path: routs.PRODUCT, 
     loadChildren: () => import('./product/product.module').then(m => m.ProductModule) 
   },
+  { 
+    path: routs.WORK_LOG, 
+    loadChildren: () => import('./work-log/work-log.module').then(m => m.WorkLogModule) 
+  },
   
 
   { path: '**', redirectTo: routs.HOME }

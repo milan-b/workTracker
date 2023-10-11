@@ -8,3 +8,5 @@
     export const  PRODUCT_CATEGORY = 'product-category';
 
     export const  PRODUCT =  'product';
+
+    export const WORK_LOG = 'work-log';
