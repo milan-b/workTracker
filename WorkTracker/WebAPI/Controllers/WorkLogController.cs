@@ -32,13 +32,14 @@ namespace WebAPI.Controllers
             IEnumerable<WorkLogODTO> workLogs = (await _repository.WorkLog.FindAll().ToListAsync())
                 .Select(item => item.ToDTO());
             return Ok(workLogs);
-        }
+        } 
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] WorkLogIDTO workLogDTO)
         {
             var workLog = new WorkLog();
             workLog.Map(workLogDTO);
+            workLog.IsApproved = false;
             _repository.WorkLog.Create(workLog);
             await _repository.SaveAsync();
             return Ok();

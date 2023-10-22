@@ -1,0 +1,40 @@
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title i18n>Date</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <mat-label i18n>Date:</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <div class="row">
+        
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select i18n-placeholder="Project" placeholder="Project" formControlName="project">
+              <mat-option *ngFor="let project of allProjects$ | async" [value]="project.id">
+                {{ project.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error i18n *ngIf="form.controls['project'].hasError('required')">
+              Project is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" i18n>Create</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
