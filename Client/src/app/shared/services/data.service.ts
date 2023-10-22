@@ -31,6 +31,10 @@ export class DataService {
     return this.http.get<T>(environment.apiUrl + url, { observe: 'response', params: params });
   }
 
+  getChildren<T>(url: string, id: string | number): Observable<HttpResponse<T>> {
+    return this.http.get<T>(environment.apiUrl + url + '/' + id, { observe: 'response' });
+  }
+
   /**
      * Perform http get 
      *

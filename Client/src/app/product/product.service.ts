@@ -40,6 +40,16 @@ export class ProductService {
     )
   }
 
+  getAllAsMap():Observable<Map<number, Product> | null> {
+    return this.getAll().pipe(
+      map(products => {
+        const productsMap: Map<number, Product> = new Map();
+        products?.forEach(product => productsMap.set(product.id!, product));
+        return productsMap;
+      })
+    )
+  }
+
   create(product: Product):Observable<Object>{
     return this.dataService.post(this.url, product).pipe(
       tap( () => this.products = null)

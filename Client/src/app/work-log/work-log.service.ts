@@ -44,6 +44,16 @@ export class WorkLogService {
     )
   }
 
+  // getAllAsMap():Observable<Map<string, WorkLog> | null> {
+  //   return this.getAll().pipe(
+  //     map(workLogs => {
+  //       const workLogsMap: Map<string, WorkLog> = new Map();
+  //       workLogs?.forEach(workLog => workLogsMap.set(workLog.id!, workLog));
+  //       return workLogsMap;
+  //     })
+  //   )
+  // }
+
   create(workLog: WorkLog):Observable<Object>{
     return this.dataService.post(this.url, workLog).pipe(
       tap( () => this.workLogs = null)
