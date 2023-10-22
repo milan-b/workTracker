@@ -13,10 +13,10 @@ const routes: Routes = [
     path: routs.CREATE,
     component: FormComponent
   },
-  // {
-  //   path: routs.EDIT,
-  //   component: FormComponent
-  // }
+  {
+    path: routs.EDIT,
+    component: FormComponent
+  }
 ];
 
 @NgModule({

@@ -20,10 +20,11 @@ export class FormComponent implements OnInit  {
 
   allProjects$: Observable<Project[] | null>;
   id: string | null = null;
+  title = "Create";
 
   form = this.formBuilder.group({
     date: [new Date(), Validators.required],
-    project: [null, Validators.required]
+    project: this.formBuilder.control<number | undefined>({value: undefined, disabled: false}),
   });
 
   constructor(
@@ -40,6 +41,22 @@ export class FormComponent implements OnInit  {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
+    if (this.id) {
+      this.title = 'Edit';
+      this.workLogService.get(this.id).subscribe({
+        next: workLog => {
+          this.form.patchValue({
+            date: workLog?.date,
+            project: workLog?.projectId
+            // INFO maybe add isApproved
+          });
+        },
+        error: () => {
+          this.notificationService.showError('Error while getting work log.');
+          this.router.navigate([routs.WORK_LOG]);
+        }
+      })
+    }
   }
 
   onSubmit(): void {

@@ -1,7 +1,7 @@
 <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title i18n>Date</mat-card-title>
+      <mat-card-title><h3 i18n>{{title}}</h3></mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="row">
@@ -12,6 +12,9 @@
             <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+            <mat-error i18n *ngIf="form.controls['date'].hasError('required')">
+              Date is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -34,7 +37,7 @@
       
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit" i18n>Create</button>
+      <button mat-raised-button color="primary" type="submit" i18n>Save</button>
     </mat-card-actions>
   </mat-card>
 </form>
