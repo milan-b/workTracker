@@ -34,11 +34,11 @@ export class WorkLogEntryService {
     return this.dataService.getById<WorkLogEntry>(this.url, '' + id);
   }
 
-  create(workLogEntry: WorkLogEntry):Observable<Object>{
+  create(workLogEntry: WorkLogEntry[]):Observable<Object>{
     return this.dataService.post(this.url, workLogEntry);
   }
 
-  update(workLogEntry: WorkLogEntry, id: number): Observable<Object>{
+  update(workLogEntry: WorkLogEntry[], id: string): Observable<Object>{
     return this.dataService.put(this.url + '/' + id, workLogEntry);
   }
 

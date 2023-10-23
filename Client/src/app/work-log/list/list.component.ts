@@ -1,12 +1,11 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ListDataSource } from './list-datasource';
 import { WorkLogService } from '../work-log.service';
 import { WorkLog } from '../work-log.model';
-import { Project } from 'src/app/project/project.model';
-import { ProjectService } from 'src/app/project/project.service';
+import { Router } from '@angular/router';
+import * as routs from 'src/app/routs';
 
 @Component({
   selector: 'app-list',
@@ -26,10 +25,14 @@ export class ListComponent implements AfterViewInit {
 
   constructor(
     private workLogService: WorkLogService,
-
+    private router: Router
     ){
      
     }
+
+  goToEntrys(workLog: WorkLog){
+    this.router.navigate([routs.WORK_LOG_ENTRY + '/' + workLog.id]);
+  }
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;

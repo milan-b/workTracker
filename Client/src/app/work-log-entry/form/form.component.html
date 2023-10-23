@@ -1,0 +1,59 @@
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title i18n>{{title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select (selectionChange)="setUnits($event)" i18n-placeholder="Product" placeholder="Product" formControlName="product">
+              <mat-option *ngFor="let product of products" [value]="product.id">
+                {{ product.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error i18n *ngIf="form.controls['product'].hasError('required')">
+              Product is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput type="number" i18n-placeholder="Amount" formControlName="amount">
+            <mat-error *ngIf="form.controls['amount'].hasError('required')">
+              Amount is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select i18n-placeholder="Unit" placeholder="Unit" formControlName="unit">
+              <mat-option *ngFor="let unit of units" [value]="unit">
+                {{ unit }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls['unit'].hasError('required')">
+              Unit is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput type="text" i18n-placeholder="Note" placeholder="Note" formControlName="note">
+          </mat-form-field>
+        </div>
+      </div>
+     
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" i18n>Create</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
