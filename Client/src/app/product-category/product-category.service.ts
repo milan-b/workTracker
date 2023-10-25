@@ -14,6 +14,8 @@ export class ProductCategoryService {
 
   private productCategories: Map<number, ProductCategory> | null = null;
 
+  private productCategoryTree: TreeNode | undefined;
+
   getAll(): Observable<Map<number, ProductCategory> | null> {
     if(this.productCategories){
       return of(this.productCategories);
@@ -21,7 +23,74 @@ export class ProductCategoryService {
     return this.refreshProductCategories();
   }
 
+  // getAllSubcategories(productCategory: ProductCategory): Observable<TreeNode[]>{
+  //   return this.getAllAsTreeNode().pipe(
+  //     map(
+  //       productCategoriesTree => {
+  //         let parentCategoryNode: TreeNode | undefined;
+  //         let nodesToSearch = [productCategoriesTree];
+
+  //         do{
+  //           parentCategoryNode = nodesToSearch.find(node => node?.id === productCategory.id);
+  //           let newNodesToSearch: TreeNode[] = [];
+  //           nodesToSearch.forEach(node =>{
+  //             if(node?.children){
+  //               newNodesToSearch.push(...node.children);
+  //             }
+  //           });
+  //           nodesToSearch = newNodesToSearch;
+  //         }while(!parentCategoryNode);
+
+  //         let result: TreeNode[] = [parentCategoryNode];
+  //         let nodesToExpand: TreeNode[] = [parentCategoryNode];
+
+  //         while(nodesToExpand.length > 0){
+  //           let newNodesToExpand: TreeNode[] = [];
+  //           nodesToExpand.forEach(node => {
+  //             if(node.children){
+  //               result.push(...node.children);
+  //               newNodesToExpand.push(...node.children);
+  //             }
+  //           });
+  //           nodesToExpand = newNodesToExpand;
+  //         }
+  //         return result;
+  //       }
+  //     ));
+  // }
+
+  // getAllSubcategories(parentCategoryNode: TreeNode): TreeNode[] {
+  //   let result: TreeNode[] = [parentCategoryNode];
+  //   let nodesToExpand: TreeNode[] = [parentCategoryNode];
+
+  //   while (nodesToExpand.length > 0) {
+  //     let newNodesToExpand: TreeNode[] = [];
+  //     nodesToExpand.forEach(node => {
+  //       if (node.children) {
+  //         result.push(...node.children);
+  //         newNodesToExpand.push(...node.children);
+  //       }
+  //     });
+  //     nodesToExpand = newNodesToExpand;
+  //   }
+  //   return result;
+  // }
+
+  getAllSubcategories(parentCategoryNode: TreeNode): TreeNode[] {
+    let result: TreeNode[] = [];
+    if(parentCategoryNode.children){
+      result.push(...parentCategoryNode.children);
+      parentCategoryNode.children.forEach(child =>{
+        result.push(...this.getAllSubcategories(child));
+      });
+    }
+    return result;
+  }
+
   getAllAsTreeNode(): Observable<TreeNode | undefined>{
+    if(this.productCategoryTree){
+      return of(this.productCategoryTree);
+    }
     return this.getAll().pipe(
       map(
         productCategories => this.productCategoriesToTreeNode(productCategories)
@@ -90,5 +159,10 @@ export class ProductCategoryService {
     }
   }
 
+  private getChildren(productCategory: ProductCategory, productCategories: ProductCategory[]): ProductCategory[]{
+    let children = productCategories.filter((value) => value.parentId === productCategory.id);
+    children.forEach(c => {children.push(...this.getChildren(c, productCategories))});
+    return children;
+  }
 
 }
