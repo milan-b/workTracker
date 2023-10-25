@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <mat-select (selectionChange)="setUnits($event)" i18n-placeholder="Product" placeholder="Product" formControlName="product">
+            <mat-select (selectionChange)="setUnits()" i18n-placeholder="Product" placeholder="Product" formControlName="product">
               <mat-option *ngFor="let product of products" [value]="product.id">
                 {{ product.name }}
               </mat-option>
@@ -53,7 +53,7 @@
      
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit" i18n>Create</button>
+      <button mat-raised-button color="primary" type="submit" i18n>Save</button>
     </mat-card-actions>
   </mat-card>
 </form>

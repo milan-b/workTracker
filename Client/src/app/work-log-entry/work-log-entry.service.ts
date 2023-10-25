@@ -30,16 +30,19 @@ export class WorkLogEntryService {
       );
   }
 
-  get(id: string):Observable<WorkLogEntry | null>{
-    return this.dataService.getById<WorkLogEntry>(this.url, '' + id);
+  get(workLogId: string, id: string):Observable<WorkLogEntry | undefined>{
+    return this.getAll(workLogId)
+      .pipe(
+        map(workLogs => workLogs?.find(i => i.id === id))
+      );
   }
 
   create(workLogEntry: WorkLogEntry[]):Observable<Object>{
     return this.dataService.post(this.url, workLogEntry);
   }
 
-  update(workLogEntry: WorkLogEntry[], id: string): Observable<Object>{
-    return this.dataService.put(this.url + '/' + id, workLogEntry);
+  update(workLogEntry: WorkLogEntry[]): Observable<Object>{
+    return this.dataService.put(this.url, workLogEntry);
   }
 
 }

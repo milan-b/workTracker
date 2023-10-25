@@ -26,6 +26,7 @@ namespace WebAPI.Controllers
         //    return workLogEntry == null ? NotFound() : Ok(workLogEntry.ToDTO());
         //}
 
+
         [HttpGet("{workLogId}")]
         public async Task<IActionResult> GetAll([FromRoute] Guid workLogId)
         {
@@ -53,7 +54,7 @@ namespace WebAPI.Controllers
             List<WorkLogEntry> workLogEntries = workLogEntriesDTO.ToDAO();
             foreach (WorkLogEntry workLogEntry in workLogEntries)
             {
-                _repository.WorkLogEntry.Create(workLogEntry);
+                _repository.WorkLogEntry.Update(workLogEntry);
             }
             await _repository.SaveAsync();
             return Ok();

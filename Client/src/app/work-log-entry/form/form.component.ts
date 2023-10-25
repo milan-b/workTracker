@@ -46,14 +46,32 @@ export class FormComponent {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.workLogId = this.route.snapshot.paramMap.get('workLogId');
-    console.log('worklogId: ' + this.workLogId, '\n ID: ', this.id);
+
     if (this.id) {
       this.title = 'Edit';
+      this.workLogEntryService.get(this.workLogId!, this.id).subscribe({
+        next: workLogEntry => {
+          this.form.patchValue({
+            product: workLogEntry?.productId,
+            amount: workLogEntry?.amount,
+            unit: workLogEntry?.unit,
+            note: workLogEntry?.note
+          });
+          this.setUnits();
+          this.form.patchValue({
+            unit: workLogEntry?.unit
+          });
+        },
+        error: () => {
+          this.notificationService.showError('Error while getting work log entry.');
+          this.router.navigate([routs.WORK_LOG_ENTRY]);
+        }
+      })
     }
   }
 
-  setUnits(event: MatSelectChange) {
-    let product = this.products.find(p => p.id === event.value);
+  setUnits() {
+    let product = this.products.find(p => p.id === this.form.value.product);
     if (product) {
       this.units = product.units!.split(',').map(i => i.trim());
       this.form.patchValue({
@@ -68,10 +86,10 @@ export class FormComponent {
   onSubmit(): void {
     if (this.form.valid) {
       let request = this.id ?
-        this.workLogEntryService.update([this.getModelFromForm()], this.id) :
+        this.workLogEntryService.update([this.getModelFromForm()]) :
         this.workLogEntryService.create([this.getModelFromForm()]);
       request.subscribe(() => {
-        this.notificationService.showInfo(`WorkLog entry is saved.`);
+        this.notificationService.showInfo(`Work log entry is saved.`);
         this.router.navigate([routs.WORK_LOG_ENTRY + '/' + this.workLogId]);
       });
     }
