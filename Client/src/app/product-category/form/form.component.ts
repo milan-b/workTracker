@@ -22,9 +22,6 @@ export class FormComponent {
   id: string | null = null;
   title = 'New';
 
-  @ViewChild(MatSelect)
-  productCategorySelect: MatSelect | undefined;
-
   productCategoryForm = this.formBuilder.group({
     name: ['', Validators.required],
     parentId: this.formBuilder.control<number | undefined>({value: undefined, disabled: false})
@@ -75,7 +72,6 @@ export class FormComponent {
   
       dialogRef.afterClosed().subscribe((result: TreeNode) => {
         console.log('The dialog was closed', result);
-        this.productCategorySelect?.close();
         this.productCategoryForm.patchValue({
           parentId: result?.id
         });
