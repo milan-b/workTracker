@@ -5,36 +5,48 @@ import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 import { WorkLog } from '../work-log.model';
 import { WorkLogService } from '../work-log.service';
+import { EventEmitter } from '@angular/core';
+import { Filter } from './list.component';
 
 
 export class ListDataSource extends DataSource<WorkLog> {
   data: WorkLog[] = [];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
+  filter: Filter | undefined;
+
 
   constructor(private workLogService: WorkLogService) {
     super();
   }
 
   connect(): Observable<WorkLog[]> {
-    if (this.sort) {
-      return merge(this.workLogService.getAll(), this.sort.sortChange)
+    return merge(this.workLogService.getAll(), this.sort!.sortChange, this.filter!.filterChange)
       .pipe(map(data => {
-        if(Array.isArray(data)){
-          this.data = [...data]; 
+        if (Array.isArray(data)) {
+          this.data = [...data];
         }
-        return this.getSortedData(this.data);
+        return this.getSortedData(this.filterData(this.data));
       }));
-    } else {
-      throw Error('Please set the paginator and sort on the data source before connecting.');
-    }
   }
 
   /**
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect(): void {}
+  disconnect(): void { }
+
+  private filterData(data: WorkLog[]): WorkLog[] {
+    console.log(this.filter?.values);
+    return data.filter( item =>{
+      let isMatch = true;
+      for(let [key,value] of this.filter!.values){
+        isMatch = (!value) || (item[key as keyof WorkLog] == value); 
+        if(!isMatch) return false;
+      }
+      return isMatch;
+    })
+  }
 
 
   /**

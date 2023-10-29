@@ -126,7 +126,6 @@ export class FormComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: TreeNode) => {
-      console.log('The dialog was closed', result);
       if(result){
         this.currentProcutCategory = result.id;
         if(this.currentProcutCategory === 1){
