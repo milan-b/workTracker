@@ -54,6 +54,10 @@ export class ListComponent implements AfterViewInit, OnInit {
     this.filter.filterChange.emit();
   }
 
+  goToCreate(){
+    this.router.navigate([routs.WORK_LOG + '/' + routs.CREATE]);
+  }
+
   goToEntrys(workLog: WorkLog){
     this.router.navigate([routs.WORK_LOG_ENTRY + '/' + workLog.id]);
   }

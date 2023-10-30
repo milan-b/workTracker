@@ -15,7 +15,7 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field class="full-width">
+        <mat-form-field class="full-width ml-1">
           <mat-label i18n>Filter by approved</mat-label>
           <mat-select [value]="undefined" (selectionChange)="applyFilter($event, 'isApproved')"
             i18n-placeholder="Is Approved" placeholder="Is Approved">
@@ -34,7 +34,11 @@
       </div>
 
       <div class="col">
-        test
+        <div class="actions">
+          <button mat-fab color="primary" aria-label="Add new" (click)="goToCreate()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
       </div>
 
     </div>
