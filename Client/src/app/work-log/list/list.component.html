@@ -5,42 +5,35 @@
   <mat-card-content>
     <div class="row">
 
-      <div class="col-3">
-        <div class="row">
+      <div class="col">
+        <mat-form-field class="full-width">
+          <mat-label i18n>Filter by project</mat-label>
+          <mat-select (selectionChange)="applyFilter($event, 'projectId')" i18n-placeholder="Project"
+            placeholder="Project">
+            <mat-option *ngFor="let project of projects" [value]="project.id">
+              {{ project.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label i18n>Filter by approved</mat-label>
+          <mat-select [value]="undefined" (selectionChange)="applyFilter($event, 'isApproved')"
+            i18n-placeholder="Is Approved" placeholder="Is Approved">
+            <mat-option i18n [value]="undefined">
 
-          <div class="col">
-            <mat-form-field class="full-width">
-              <mat-label i18n>Filter by project</mat-label>
-              <mat-select (selectionChange)="applyFilter($event, 'projectId')" i18n-placeholder="Project"
-                placeholder="Project">
-                <mat-option *ngFor="let project of projects" [value]="project.id">
-                  {{ project.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+            </mat-option>
+            <mat-option i18n [value]="true">
+              Yes
+            </mat-option>
+            <mat-option i18n [value]="false">
+              No
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-          <div class="col ml-1">
-            <mat-form-field class="full-width">
-              <mat-label i18n>Filter by approved</mat-label>
-              <mat-select [value]="undefined" (selectionChange)="applyFilter($event, 'isApproved')"
-                i18n-placeholder="Is Approved" placeholder="Is Approved">
-                <mat-option i18n [value]="undefined">
-                  
-                </mat-option>
-                <mat-option i18n [value]="true">
-                  Yes
-                </mat-option>
-                <mat-option i18n [value]="false">
-                  No
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-
-        </div>
       </div>
-      <div class="col-1">
+
+      <div class="col">
         test
       </div>
 
