@@ -4,7 +4,11 @@ import { MatSort } from '@angular/material/sort';
 import { ListDataSource } from './list-datasource';
 import { WorkLogEntryService } from '../work-log-entry.service';
 import { WorkLogEntry } from '../work-log-entry.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import * as routs from 'src/app/routs';
+import { WorkLogService } from 'src/app/work-log/work-log.service';
+import { WorkLog } from 'src/app/work-log/work-log.model';
+import { NotificationsService } from 'src/app/shared';
 
 @Component({
   selector: 'app-list',
@@ -15,8 +19,14 @@ export class ListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<WorkLogEntry>;
   dataSource: ListDataSource | undefined;
+  workLog: WorkLog | undefined;
 
-  constructor(private workLogEntryService: WorkLogEntryService, private route: ActivatedRoute){   
+  constructor(
+    private workLogEntryService: WorkLogEntryService,
+    private workLogService: WorkLogService,
+    private notificationService: NotificationsService,
+    private route: ActivatedRoute,
+    private router: Router) {
   }
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
@@ -24,12 +34,33 @@ export class ListComponent implements AfterViewInit, OnInit {
 
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.dataSource = new ListDataSource(this.workLogEntryService, id!);
+    const workLogId = this.route.snapshot.paramMap.get('workLogId');
+    this.dataSource = new ListDataSource(this.workLogEntryService, workLogId!);
+    this.workLogService.get(workLogId!).subscribe(workLog => this.workLog = workLog);
   }
 
   ngAfterViewInit(): void {
     this.dataSource!.sort = this.sort;
     this.table.dataSource = this.dataSource!;
   }
+
+  goToCreate() {
+    if(this.workLog!.isApproved){
+      this.notificationService.showInfo('You can\'t add entrys to approved work log.');
+    }else{
+      this.router.navigate([routs.WORK_LOG_ENTRY + '/' + this.workLog!.id! + '/' + routs.CREATE]);
+    }
+  }
+
+  approveWorkLog() {
+    if(this.workLog!.isApproved){
+      this.notificationService.showInfo('This work log is already approved.')
+    }else{
+      this.workLogService.approve(this.workLog!.id!).subscribe(() => {
+        this.workLog!.isApproved = true;
+        this.notificationService.showInfo(`Work log is approved.`);
+      });
+    }
+  }
+
 }

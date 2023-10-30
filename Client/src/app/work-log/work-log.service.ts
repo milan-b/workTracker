@@ -66,4 +66,10 @@ export class WorkLogService {
     );
   }
 
+  approve(workLogId: string): Observable<Object>{
+    return this.dataService.putNoData(this.url + '/' + workLogId + '/approve').pipe(
+      tap( () => this.workLogs = null)
+    );
+  }
+
 }

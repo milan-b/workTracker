@@ -58,5 +58,19 @@ namespace WebAPI.Controllers
             await _repository.SaveAsync();
             return Ok();
         }
+
+        [HttpPut("{id}/approve")]
+        public async Task<IActionResult> Approve([FromRoute] Guid id)
+        {
+            var workLog = await _repository.WorkLog.FindByCondition(o => o.Id == id).FirstOrDefaultAsync();
+            if (workLog == null)
+            {
+                return NotFound($"WorkLog with id:{id} does not exist.");
+            }
+            workLog.IsApproved = true;
+            _repository.WorkLog.Update(workLog);
+            await _repository.SaveAsync();
+            return Ok();
+        }
     }
 }

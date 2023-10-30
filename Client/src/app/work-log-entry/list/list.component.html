@@ -1,3 +1,23 @@
+<mat-card>
+  <mat-card-content>
+    <div class="row">
+      <div class="col">
+        <div class="actions">
+          <button mat-raised-button color="primary" (click)="approveWorkLog()" i18n>
+            <mat-icon fontIcon="{{workLog?.isApproved ? 'check_box' : 'check_box_outline_blank'}}">
+            </mat-icon>
+            Approve
+          </button>
+          <button class="ml-1" mat-fab color="primary" aria-label="Add new" (click)="goToCreate()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+
 <div class="mat-elevation-z8">
   <table mat-table class="full-width-table" matSort aria-label="Elements">
 

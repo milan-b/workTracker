@@ -6,7 +6,7 @@ import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
   { 
-    path: routs.DETAILS, 
+    path: ':workLogId', 
     component: ListComponent 
   },
   {

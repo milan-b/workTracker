@@ -9,14 +9,15 @@
         <div class="col">
           <mat-form-field class="full-width" *ngIf="productCategories">
             <mat-label i18n>Filter products by category</mat-label>
-            <input i18n-placeholder="Filter prducts by category" (change)="openModal()" (click)="openModal()" matInput placeholder="Filter prducts by category" 
-            [value]="productCategories!.get(currentProcutCategory)?.name">
+            <input i18n-placeholder="Filter prducts by category" (change)="openModal()" (click)="openModal()" matInput
+              placeholder="Filter prducts by category" [value]="productCategories!.get(currentProcutCategory)?.name">
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
             <mat-label i18n>Product</mat-label>
-            <mat-select (selectionChange)="setUnits()" i18n-placeholder="Select" placeholder="Select" formControlName="product">
+            <mat-select (selectionChange)="setUnits()" i18n-placeholder="Select" placeholder="Select"
+              formControlName="product">
               <mat-option *ngFor="let product of filteredProducts" [value]="product.id">
                 {{ product.name }}
               </mat-option>
@@ -27,7 +28,7 @@
           </mat-form-field>
         </div>
       </div>
-    
+
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
@@ -61,7 +62,7 @@
           </mat-form-field>
         </div>
       </div>
-     
+
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit" i18n>Save</button>

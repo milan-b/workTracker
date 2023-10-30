@@ -62,4 +62,13 @@ export class DataService {
       };
     return this.http.put(environment.apiUrl + url, data, httpOptions);
   }
+
+  putNoData(url: string): Observable<Object> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      };
+    return this.http.put(environment.apiUrl + url, null, httpOptions);
+  }
 }
