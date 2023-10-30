@@ -30,7 +30,7 @@ export class ListComponent implements AfterViewInit, OnInit {
   }
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['productName', 'amount', 'unit', 'note'];
+  displayedColumns = ['productName', 'amount', 'unit', 'note', 'actions'];
 
 
   ngOnInit(): void {
@@ -49,6 +49,14 @@ export class ListComponent implements AfterViewInit, OnInit {
       this.notificationService.showInfo('You can\'t add entrys to approved work log.');
     }else{
       this.router.navigate([routs.WORK_LOG_ENTRY + '/' + this.workLog!.id! + '/' + routs.CREATE]);
+    }
+  }
+
+  goToEdit(workLogEntryId: string) {
+    if(this.workLog!.isApproved){
+      this.notificationService.showInfo('You can\'t change entrys in approved work log.');
+    }else{
+      this.router.navigate([routs.WORK_LOG_ENTRY + '/' + this.workLog!.id! + '/' + routs.EDIT_ID + workLogEntryId]);
     }
   }
 

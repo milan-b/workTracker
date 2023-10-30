@@ -2,6 +2,7 @@
     export const HOME = '';
     export const  CREATE = 'create';
     export const  EDIT = 'edit/:id';
+    export const  EDIT_ID = 'edit/';
     export const  DETAILS = ':id';
 
     export const  PROJECT =  'project';
