@@ -1,0 +1,8 @@
+<h1 mat-dialog-title i18n>{{data.title}}</h1>
+<div mat-dialog-content>
+  <p *ngIf="data.content" i18n>{{data.content}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" i18n mat-raised-button>{{data.noLabel}}</button>
+  <button mat-button (click)="onYesClick()" cdkFocusInitial i18n mat-raised-button color="primary">{{data.yesLabel}}</button>
+</div>

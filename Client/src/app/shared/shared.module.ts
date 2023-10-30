@@ -4,16 +4,19 @@ import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorNotificationComponent } from './notifications/error-notification/error-notification.component';
 import { InfoNotificationComponent } from './notifications/info-notification/info-notification.component';
+import { YesNoDialogComponent } from './dialogs/yes-no-dialog/yes-no-dialog.component';
 
 
 
 @NgModule({
   declarations: [
     ErrorNotificationComponent,
-    InfoNotificationComponent
+    InfoNotificationComponent,
+    YesNoDialogComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule
   ], 
   exports: [
     CommonModule,
