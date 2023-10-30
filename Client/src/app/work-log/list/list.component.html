@@ -23,8 +23,11 @@
           <div class="col ml-1">
             <mat-form-field class="full-width">
               <mat-label i18n>Filter by approved</mat-label>
-              <mat-select [value]="false" (selectionChange)="applyFilter($event, 'isApproved')"
+              <mat-select [value]="undefined" (selectionChange)="applyFilter($event, 'isApproved')"
                 i18n-placeholder="Is Approved" placeholder="Is Approved">
+                <mat-option i18n [value]="undefined">
+                  
+                </mat-option>
                 <mat-option i18n [value]="true">
                   Yes
                 </mat-option>

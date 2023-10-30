@@ -41,7 +41,7 @@ export class ListDataSource extends DataSource<WorkLog> {
     return data.filter( item =>{
       let isMatch = true;
       for(let [key,value] of this.filter!.values){
-        isMatch = (!value) || (item[key as keyof WorkLog] == value); 
+        isMatch = (value === undefined) || (item[key as keyof WorkLog] == value); 
         if(!isMatch) return false;
       }
       return isMatch;

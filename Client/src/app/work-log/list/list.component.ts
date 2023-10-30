@@ -45,7 +45,7 @@ export class ListComponent implements AfterViewInit, OnInit {
   ngOnInit(): void {
     this.projectService.getAll().subscribe(projects =>{
       this.projects = projects;
-      this.projects?.unshift({name:''});
+      this.projects?.unshift({name:'', id: undefined});
     });
   }
 
