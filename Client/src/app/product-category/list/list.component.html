@@ -6,6 +6,7 @@
       folder
     </mat-icon>
     {{node.name}}
+    
   </mat-tree-node>
 
   <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
@@ -23,7 +24,15 @@
 
     <ng-template #link><a href="javascript:;" (click)="select(node)">{{node.name}}</a></ng-template>
 
-    <ng-template #content>{{node.name}}</ng-template>
+    <ng-template #content>
+      {{node.name}}
+      <button color="basic" class="ml-1" mat-icon-button (click)="goToEdit(node.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button color="basic" class="ml-1" mat-icon-button (click)="delete(node)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </ng-template>
 
   </mat-tree-node>
 </mat-tree>

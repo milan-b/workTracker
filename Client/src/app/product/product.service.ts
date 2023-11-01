@@ -40,6 +40,14 @@ export class ProductService {
     )
   }
 
+  getAllForCategory(categoryId: number):Observable<Product[] | undefined>{
+    return this.getAll().pipe(
+      map(
+        products => products?.filter(product => product.productCategoryId === categoryId)
+      )
+    )
+  }
+
   getAllAsMap():Observable<Map<number, Product> | null> {
     return this.getAll().pipe(
       map(products => {

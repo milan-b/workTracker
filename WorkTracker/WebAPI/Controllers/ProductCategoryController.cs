@@ -57,5 +57,33 @@ namespace WebAPI.Controllers
             await _repository.SaveAsync();
             return Ok();
         }
+
+        [HttpDelete("{id:int:min(1)}")]
+        public async Task<IActionResult> Delete([FromRoute] int id)
+        {
+            if(id == 1)
+            {
+                return BadRequest($"It is not allowed to delete first category.");
+            }
+            var category = await _repository.ProductCategory.FindByCondition(o => o.Id == id)
+                .Include(o => o.Products).FirstOrDefaultAsync();
+            if (category is null)
+            {
+                return NotFound($"Category with id:{id} does not exist.");
+            }
+            if(category.Products.Count > 0)
+            {
+                return BadRequest($"You can't delete this category because there are some products that belongs to it.");
+            }
+            var hasChildren = _repository.ProductCategory.FindByCondition(o => o.ParentId == id).Any();
+            if (hasChildren)
+            {
+                return BadRequest($"You can't delete this category because it has children.");
+            }
+
+            _repository.ProductCategory.Delete(category);
+            await _repository.SaveAsync();
+            return Ok();
+        }
     }
 }

@@ -26,6 +26,8 @@ namespace WebAPI.Controllers
             return workLog == null ? NotFound() : Ok(workLog.ToDTO());
         }
 
+        //TODO add for project filter, and paging, sorting
+
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

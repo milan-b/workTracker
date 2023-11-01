@@ -165,4 +165,12 @@ export class ProductCategoryService {
     return children;
   }
 
+  delete(id: number):Observable<Object>{
+    return this.dataService.delete(this.url + '/' + id).pipe(
+      tap(
+        () => this.productCategories = null
+      )
+    );
+  }
+
 }

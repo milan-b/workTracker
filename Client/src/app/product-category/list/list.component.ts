@@ -2,18 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { ProductCategoryService } from '../product-category.service';
-import { TreeNode } from 'src/app/shared';
-
-/**
- * Flattened tree node that has been created from a FileNode through the flattener. Flattened
- * nodes include level index and whether they can be expanded or not.
- */
-// export interface FlatTreeNode {
-//   name: string;
-//   type: string;
-//   level: number;
-//   expandable: boolean;
-// }
+import { NotificationsService, TreeNode } from 'src/app/shared';
+import { Router } from '@angular/router';
+import * as routs from 'src/app/routs';
+import { ProductService } from 'src/app/product/product.service';
 
 @Component({
   selector: 'app-list',
@@ -35,7 +27,11 @@ export class ListComponent implements OnInit {
   /** The MatTreeFlatDataSource connects the control and flattener to provide data. */
   dataSource: MatTreeFlatDataSource<TreeNode, TreeNode>;
 
-  constructor(private productCategoryService: ProductCategoryService) {
+  constructor(
+    private productCategoryService: ProductCategoryService,
+    private productService: ProductService,
+    private notificationService: NotificationsService,
+    private router: Router) {
     this.treeFlattener = new MatTreeFlattener(
       this.transformer,
       this.getLevel,
@@ -47,6 +43,10 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setData();
+  }
+
+  private setData(){
     this.productCategoryService.getAllAsTreeNode().subscribe(data => {
       if (data) {
         this.dataSource.data = [data];
@@ -56,7 +56,7 @@ export class ListComponent implements OnInit {
 
   /** Transform the data to something the tree can read. */
   transformer(node: TreeNode, level: number): TreeNode {
-    return {...node, level: level};
+    return { ...node, level: level };
   }
 
   /** Get the level of the node */
@@ -79,7 +79,40 @@ export class ListComponent implements OnInit {
     return node.children;
   }
 
-  select(node: TreeNode): void{
+  select(node: TreeNode): void {
     this.selectEvent.emit(node);
+  }
+
+  goToEdit(id: number) {
+    this.router.navigate([routs.PRODUCT_CATEGORY + '/' + routs.EDIT_ID + id]);
+  }
+
+  delete(node: TreeNode) {
+    if (node.children) {
+      let children = this.listToNameString(node.children);
+      this.notificationService.showInfo('You can\'t delete this category because it has children. Children of this node are: ' + children);
+    }
+
+    this.productService.getAllForCategory(node.id).subscribe(products => {
+      if (products && products.length > 0) {
+        let productNames = this.listToNameString(products);
+        this.notificationService.showInfo('You can\'t delete this category because there are some products that belongs to it. Those products are: ' + productNames);
+      }else{
+        this.productCategoryService.delete(node.id).subscribe(() =>{
+          this.notificationService.showInfo('Category deleted');
+          this.setData();
+        })
+      }
+    })
+
+  }
+
+  private listToNameString(list: any[]): string {
+    let names = '';
+    list.forEach(o => {
+      names += o.name + ', '
+    });
+    names = names.substring(0, names.length - 2);
+    return names;
   }
 }
