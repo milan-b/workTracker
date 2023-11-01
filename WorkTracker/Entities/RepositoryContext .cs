@@ -1,6 +1,7 @@
 ﻿
 using Entities.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Security.Principal;
 
 namespace Entities
@@ -31,7 +32,23 @@ namespace Entities
             #region Query Filter
 
             modelBuilder.Entity<Project>()
-            .HasQueryFilter(post => EF.Property<bool>(post, "IsDeleted") == false);
+                .HasQueryFilter(p => !p.IsDeleted);
+
+            modelBuilder.Entity<Product>()
+                .HasQueryFilter(p => !p.IsDeleted);
+
+            modelBuilder.Entity<WorkLog>()
+                .HasQueryFilter(p => !p.IsDeleted);
+
+            modelBuilder.Entity<WorkLogEntry>()
+                .HasQueryFilter(p => !p.IsDeleted);
+
+            modelBuilder.Entity<ProductCategory>()
+                .HasQueryFilter(p => !p.IsDeleted);
+
+            //modelBuilder.Entity<Project>()
+            //.HasQueryFilter(post => EF.Property<bool>(post, "IsDeleted") == false);
+
 
             #endregion
         }

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { DataService } from '../shared';
 import { Observable, map, zip} from 'rxjs';
 import { WorkLogEntry } from './work-log-entry.model';
-import { WorkLogService } from '../work-log/work-log.service';
 import { ProductService } from '../product/product.service';
 
 @Injectable({
@@ -33,7 +32,7 @@ export class WorkLogEntryService {
   get(workLogId: string, id: string):Observable<WorkLogEntry | undefined>{
     return this.getAll(workLogId)
       .pipe(
-        map(workLogs => workLogs?.find(i => i.id === id))
+        map(workLogEtntres=> workLogEtntres?.find(i => i.id === id))
       );
   }
 
@@ -43,6 +42,10 @@ export class WorkLogEntryService {
 
   update(workLogEntry: WorkLogEntry[]): Observable<Object>{
     return this.dataService.put(this.url, workLogEntry);
+  }
+
+  delete(id: string):Observable<Object>{
+    return this.dataService.delete(this.url + '/' + id);
   }
 
 }

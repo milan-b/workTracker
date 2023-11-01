@@ -59,5 +59,23 @@ namespace WebAPI.Controllers
             await _repository.SaveAsync();
             return Ok();
         }
+
+        [HttpDelete("{workLogEntryId}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid worklogEntryId)
+        {
+            var workLogEntry = await _repository.WorkLogEntry.FindByCondition(o => o.Id == worklogEntryId)
+                .Include(o => o.WorkLog).FirstOrDefaultAsync();
+            if (workLogEntry is null)
+            {
+                return NotFound($"WorkLogEntry with id:{worklogEntryId} does not exist.");
+            }
+            if (workLogEntry.WorkLog.IsApproved)
+            {
+                return BadRequest($"You can't change work log entries in approved work log.");
+            }
+            _repository.WorkLogEntry.Delete(workLogEntry);
+            await _repository.SaveAsync();
+            return Ok();
+        }
     }
 }

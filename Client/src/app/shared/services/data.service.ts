@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-// TODO add error interceptor - https://satyapriyamishra111.medium.com/angular-error-interceptor-4b102f938065
- 
+  // TODO add error interceptor - https://satyapriyamishra111.medium.com/angular-error-interceptor-4b102f938065
+
   constructor(private http: HttpClient) { }
 
   /**
@@ -50,7 +50,7 @@ export class DataService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
-      };
+    };
     return this.http.post(environment.apiUrl + url, data, httpOptions);
   }
 
@@ -59,7 +59,7 @@ export class DataService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
-      };
+    };
     return this.http.put(environment.apiUrl + url, data, httpOptions);
   }
 
@@ -68,7 +68,11 @@ export class DataService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
-      };
+    };
     return this.http.put(environment.apiUrl + url, null, httpOptions);
+  }
+
+  delete(url: string): Observable<Object> {
+    return this.http.delete(environment.apiUrl + url);
   }
 }

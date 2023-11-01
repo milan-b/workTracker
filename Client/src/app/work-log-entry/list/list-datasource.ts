@@ -1,7 +1,7 @@
 import { DataSource } from '@angular/cdk/collections';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
-import { Observable, merge } from 'rxjs';
+import { Observable, Subject, merge } from 'rxjs';
 import { WorkLogEntry } from '../work-log-entry.model';
 import { WorkLogEntryService } from '../work-log-entry.service';
 
@@ -13,9 +13,15 @@ import { WorkLogEntryService } from '../work-log-entry.service';
 export class ListDataSource extends DataSource<WorkLogEntry> {
   data: WorkLogEntry[] = [];
   sort: MatSort | undefined;
+  private data$: Subject<WorkLogEntry[] | undefined> = new Subject();
 
   constructor(private workLogEntryService: WorkLogEntryService, private id: string) {
     super();
+    this.refreshData();
+  }
+
+  public refreshData(){
+    this.workLogEntryService.getAll(this.id).subscribe(data => this.data$.next(data));
   }
 
   /**
@@ -27,7 +33,7 @@ export class ListDataSource extends DataSource<WorkLogEntry> {
     if (this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
-      return merge(this.workLogEntryService.getAll(this.id), this.sort.sortChange)
+      return merge(this.data$, this.sort.sortChange)
       .pipe(map(data => {
         if(Array.isArray(data)){
           this.data = [...data]; 
