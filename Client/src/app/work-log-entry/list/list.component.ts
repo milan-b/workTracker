@@ -61,6 +61,10 @@ export class ListComponent implements AfterViewInit, OnInit {
     }
   }
 
+  goToEditWorkLog(){
+    this.router.navigate([routs.WORK_LOG + '/' + routs.EDIT_ID + this.workLog!.id!]);
+  }
+
   delete(workLogEntryId: string) {
     if (this.workLog!.isApproved) {
       this.notificationService.showInfo('You can\'t change entrys in approved work log.');

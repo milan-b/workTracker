@@ -5,6 +5,8 @@ import { ListDataSource } from './list-datasource';
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
 import { ProductCategory, ProductCategoryService } from 'src/app/product-category';
+import { Router } from '@angular/router';
+import * as routs from 'src/app/routs';
 
 @Component({
   selector: 'app-list',
@@ -18,24 +20,31 @@ export class ListComponent implements AfterViewInit {
 
   productCategories: Map<number, ProductCategory> | null = null;
 
+  dataSource = new ListDataSource(this.productService);
+
+  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
+  displayedColumns = [ 'name', 'units'];
+
   constructor(
     private productService : ProductService,
+    private router: Router,
     private productCategoryService: ProductCategoryService
     ){
       this.productCategoryService.getAll().subscribe(result => {
         this.productCategories = result;
         this.displayedColumns.push('productCategory');
+        this.displayedColumns.push('actions');
       });
     }
-
-  dataSource = new ListDataSource(this.productService);
-
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = [ 'name', 'units'];
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
    // this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
+
+  goToEdit(id: number) {
+    this.router.navigate([routs.PRODUCT + '/' + routs.EDIT_ID + id]);
+  }
+  
 }

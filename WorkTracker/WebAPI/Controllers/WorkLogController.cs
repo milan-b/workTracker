@@ -42,7 +42,7 @@ namespace WebAPI.Controllers
             workLog.IsApproved = false;
             _repository.WorkLog.Create(workLog);
             await _repository.SaveAsync();
-            return Ok();
+            return Ok(workLog.Id);
         }
 
         [HttpPut("{id}")]
@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
             workLog.Map(workLogDTO);
             _repository.WorkLog.Update(workLog);
             await _repository.SaveAsync();
-            return Ok();
+            return Ok(workLog.Id);
         }
 
         [HttpPut("{id}/approve")]

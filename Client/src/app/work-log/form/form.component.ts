@@ -64,9 +64,9 @@ export class FormComponent implements OnInit  {
       let request = this.id ?
         this.workLogService.update(this.getModelFromForm(), this.id) :
         this.workLogService.create(this.getModelFromForm());
-      request.subscribe(() => {
+      request.subscribe((workLogId) => {
         this.notificationService.showInfo(`Worklog is saved.`);
-        this.router.navigate([routs.WORK_LOG]);
+        this.router.navigate([routs.WORK_LOG_ENTRY + '/' + workLogId]);
       });
     }
   }

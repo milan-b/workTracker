@@ -28,7 +28,7 @@ export class FormComponent {
   title = "Create";
 
   form = this.formBuilder.group({
-    product: this.formBuilder.control<number | undefined>({ value: undefined, disabled: false }),
+    product: this.formBuilder.control<number | undefined>({ value: undefined, disabled: false }, Validators.required),
     amount: [0, Validators.required],
     unit: ['', Validators.required],
     note: ['']

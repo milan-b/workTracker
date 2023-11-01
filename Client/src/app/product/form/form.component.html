@@ -8,6 +8,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
+            <mat-label i18n>Name</mat-label>
             <input i18n-placeholder="Name" matInput placeholder="Name" formControlName="name">
             <mat-error i18n *ngIf="productForm.controls['name'].hasError('required')">
               Name is <strong>required</strong>
@@ -31,6 +32,7 @@
           </mat-form-field>
 
           <mat-form-field class="full-width">
+            <mat-label i18n>Units</mat-label>
             <input i18n-placeholder="Units" matInput placeholder="Units" formControlName="units">
             <mat-error i18n *ngIf="productForm.controls['units'].hasError('required')">
               Units is <strong>required</strong>
