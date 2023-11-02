@@ -46,7 +46,7 @@ export class ListComponent implements OnInit {
     this.setData();
   }
 
-  private setData(){
+  private setData() {
     this.productCategoryService.getAllAsTreeNode().subscribe(data => {
       if (data) {
         this.dataSource.data = [data];
@@ -86,6 +86,10 @@ export class ListComponent implements OnInit {
   goToEdit(id: number) {
     this.router.navigate([routs.PRODUCT_CATEGORY + '/' + routs.EDIT_ID + id]);
   }
+  
+  goToCreate() {
+    this.router.navigate([routs.PRODUCT_CATEGORY + '/' + routs.CREATE]);
+  }
 
   delete(node: TreeNode) {
     if (node.children) {
@@ -97,8 +101,8 @@ export class ListComponent implements OnInit {
       if (products && products.length > 0) {
         let productNames = this.listToNameString(products);
         this.notificationService.showInfo('You can\'t delete this category because there are some products that belongs to it. Those products are: ' + productNames);
-      }else{
-        this.productCategoryService.delete(node.id).subscribe(() =>{
+      } else {
+        this.productCategoryService.delete(node.id).subscribe(() => {
           this.notificationService.showInfo('Category deleted');
           this.setData();
         })

@@ -33,4 +33,8 @@ export class ListComponent implements AfterViewInit {
   goToEdit(id: number) {
     this.router.navigate([routs.PROJECT + '/' + routs.EDIT_ID + id]);
   }
+
+  goToCreate() {
+    this.router.navigate([routs.PROJECT + '/' + routs.CREATE]);
+  }
 }
