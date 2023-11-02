@@ -52,7 +52,7 @@ export class FormComponent implements OnInit  {
           });
         },
         error: () => {
-          this.notificationService.showError('Error while getting work log.');
+          this.notificationService.showError($localize`Error while getting work log.`);
           this.router.navigate([routs.WORK_LOG]);
         }
       })
@@ -65,7 +65,7 @@ export class FormComponent implements OnInit  {
         this.workLogService.update(this.getModelFromForm(), this.id) :
         this.workLogService.create(this.getModelFromForm());
       request.subscribe((workLogId) => {
-        this.notificationService.showInfo(`Worklog is saved.`);
+        this.notificationService.showInfo($localize`Worklog is saved.`);
         this.router.navigate([routs.WORK_LOG_ENTRY + '/' + workLogId]);
       });
     }

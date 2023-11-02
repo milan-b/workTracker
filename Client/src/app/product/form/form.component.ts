@@ -66,7 +66,7 @@ export class FormComponent implements OnInit {
           });
         },
         error: () => {
-          this.notificationService.showError('Error while getting product.');
+          this.notificationService.showError($localize`Error while getting product.`);
           this.router.navigate([routs.PRODUCT]);
         }
       })
@@ -93,7 +93,7 @@ export class FormComponent implements OnInit {
         this.productService.update(this.getModelFromForm(), +this.id) :
         this.productService.create(this.getModelFromForm());
       request.subscribe(() => {
-        this.notificationService.showInfo(`Product ${this.productForm.value.name} is saved.`);
+        this.notificationService.showInfo($localize`Product ${this.productForm.value.name}:product name: is saved.`);
         this.router.navigate([routs.PRODUCT]);
       });
     }

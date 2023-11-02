@@ -57,7 +57,7 @@ export class FormComponent {
           });
         },
         error: () => {
-          this.notificationService.showError('Error while getting project.');
+          this.notificationService.showError($localize`Error while getting project.`);
           this.router.navigate([routs.PROJECT]);
         }
       })
@@ -86,7 +86,7 @@ export class FormComponent {
         this.productCategoryService.update(this.getModelFromForm(this.productCategoryForm.value), +this.id) :
         this.productCategoryService.create(this.getModelFromForm(this.productCategoryForm.value));
       request.subscribe(() => {
-        this.notificationService.showInfo(`Product category ${this.productCategoryForm.value.name} is saved.`);
+        this.notificationService.showInfo($localize`Product category ${this.productCategoryForm.value.name}:prodcut category name: is saved.`);
         this.router.navigate([routs.PRODUCT_CATEGORY]);
       });
     }

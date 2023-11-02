@@ -76,7 +76,7 @@ export class FormComponent {
           });
         },
         error: () => {
-          this.notificationService.showError('Error while getting work log entry.');
+          this.notificationService.showError($localize`Error while getting work log entry.`);
           this.router.navigate([routs.WORK_LOG_ENTRY]);
         }
       })
@@ -102,7 +102,7 @@ export class FormComponent {
         this.workLogEntryService.update([this.getModelFromForm()]) :
         this.workLogEntryService.create([this.getModelFromForm()]);
       request.subscribe(() => {
-        this.notificationService.showInfo(`Work log entry is saved.`);
+        this.notificationService.showInfo($localize`Work log entry is saved.`);
         this.router.navigate([routs.WORK_LOG_ENTRY + '/' + this.workLogId]);
       });
     }

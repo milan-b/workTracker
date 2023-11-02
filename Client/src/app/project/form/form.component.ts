@@ -44,7 +44,7 @@ export class FormComponent implements OnInit {
           });
         },
         error: () => {
-          this.notificationService.showError('Error while getting project.');
+          this.notificationService.showError($localize`Error while getting project.`);
           this.router.navigate([routs.PROJECT]);
         }
       })
@@ -57,7 +57,7 @@ export class FormComponent implements OnInit {
         this.projectService.update(this.getModelFromForm(), +this.id) :
         this.projectService.create(this.getModelFromForm());
       request.subscribe(() => {
-        this.notificationService.showInfo(`Project ${this.projectForm.value.name} is saved.`);
+        this.notificationService.showInfo($localize`Project ${this.projectForm.value.name}:project name: is saved.`);
         this.router.navigate([routs.PROJECT]);
       });
     }

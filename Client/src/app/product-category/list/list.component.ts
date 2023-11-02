@@ -94,17 +94,17 @@ export class ListComponent implements OnInit {
   delete(node: TreeNode) {
     if (node.children) {
       let children = this.listToNameString(node.children);
-      this.notificationService.showInfo('You can\'t delete this category because it has children. Children of this node are: ' + children);
+      this.notificationService.showInfo($localize`You can\'t delete this category because it has children. Children of this node are: ${children}`);
       return;
     }
 
     this.productService.getAllForCategory(node.id).subscribe(products => {
       if (products && products.length > 0) {
         let productNames = this.listToNameString(products);
-        this.notificationService.showInfo('You can\'t delete this category because there are some products that belongs to it. Those products are: ' + productNames);
+        this.notificationService.showInfo($localize`You can\'t delete this category because there are some products that belongs to it. Those products are: ${productNames}`);
       } else {
         this.productCategoryService.delete(node.id).subscribe(() => {
-          this.notificationService.showInfo('Category deleted');
+          this.notificationService.showInfo($localize`Category deleted`);
           this.setData();
         });
       }
