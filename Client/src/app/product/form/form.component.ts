@@ -25,7 +25,7 @@ export class FormComponent implements OnInit {
 
   productForm = this.formBuilder.group({
     name: ['', Validators.required],
-    productCategoryId: this.formBuilder.control<number | undefined>({value: undefined, disabled: false}),
+    productCategoryId: this.formBuilder.control<number | undefined>({value: undefined, disabled: false}, Validators.required),
     units: ['', Validators.required]
   });
 

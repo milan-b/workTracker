@@ -1,7 +1,9 @@
-<form [formGroup]="productForm" novalidate (ngSubmit)="onSubmit()" *ngIf="productCategories">
+<form [formGroup]="productForm" #ngForm="ngForm" novalidate (ngSubmit)="onSubmit()" *ngIf="productCategories">
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title><h3 i18n>{{title}}</h3></mat-card-title>
+      <mat-card-title>
+        <h3 i18n>{{title}}</h3>
+      </mat-card-title>
     </mat-card-header>
     <mat-card-content>
 
@@ -15,21 +17,20 @@
             </mat-error>
           </mat-form-field>
 
-          <!-- <mat-form-field class="full-width">
-            <input i18n-placeholder="Product category" matInput placeholder="Product category" formControlName="productCategoryId">
-            <mat-error i18n *ngIf="productForm.controls['productCategoryId'].hasError('required')">
-              Procut category <strong>required</strong>
-            </mat-error>
-          </mat-form-field> -->
+          <div class="mb-1">
+            <button type="button" mat-stroked-button (click)="openModal()" i18n>Select product category</button>
+            <mat-label i18n class="ml-1">
+              {{
+              productForm.controls['productCategoryId'].value ?
+              productCategories!.get(productForm.controls['productCategoryId'].value!)?.name :
+              "Product category"
+              }}
+            </mat-label>
 
-          <mat-form-field >
-            <mat-label i18n>Product category</mat-label>
-            <input  i18n-placeholder="Product category" (change)="openModal()" (click)="openModal()" matInput placeholder="Product category" 
-            [value]="productCategories!.get(productForm.controls['productCategoryId'].value!)?.name">
-            <mat-error i18n *ngIf="productForm.controls['productCategoryId'].hasError('required')">
+            <mat-error i18n *ngIf="ngForm.submitted && productForm.controls['productCategoryId'].hasError('required')">
               Procut category is <strong>required</strong>
             </mat-error>
-          </mat-form-field>
+          </div>
 
           <mat-form-field class="full-width">
             <mat-label i18n>Units</mat-label>
@@ -38,10 +39,10 @@
               Units is <strong>required</strong>
             </mat-error>
           </mat-form-field>
-          
+
         </div>
       </div>
-      
+
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit" i18n>Save</button>

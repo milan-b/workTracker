@@ -24,7 +24,7 @@ export class FormComponent {
 
   productCategoryForm = this.formBuilder.group({
     name: ['', Validators.required],
-    parentId: this.formBuilder.control<number | undefined>({value: undefined, disabled: false})
+    parentId: this.formBuilder.control<number | undefined>({value: undefined, disabled: false}, Validators.required)
   });
 
   //allProductCategories$: Observable<ProductCategory[]  | null>;
@@ -72,6 +72,7 @@ export class FormComponent {
   
       dialogRef.afterClosed().subscribe((result: TreeNode) => {
         console.log('The dialog was closed', result);
+        //TODO add validation - can't select child to be a new parent
         this.productCategoryForm.patchValue({
           parentId: result?.id
         });

@@ -95,6 +95,7 @@ export class ListComponent implements OnInit {
     if (node.children) {
       let children = this.listToNameString(node.children);
       this.notificationService.showInfo('You can\'t delete this category because it has children. Children of this node are: ' + children);
+      return;
     }
 
     this.productService.getAllForCategory(node.id).subscribe(products => {
@@ -105,9 +106,9 @@ export class ListComponent implements OnInit {
         this.productCategoryService.delete(node.id).subscribe(() => {
           this.notificationService.showInfo('Category deleted');
           this.setData();
-        })
+        });
       }
-    })
+    });
 
   }
 
