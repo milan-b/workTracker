@@ -1,6 +1,6 @@
 <h1 class="title" mat-dialog-title i18n>Select product category </h1>
 <div mat-dialog-content>
-    <p i18n>Slected: <strong *ngIf="selectedItem">{{selectedItem.name}}</strong></p>
+    <p i18n>Selected: <strong *ngIf="selectedItem">{{selectedItem.name}}</strong></p>
     <app-list [isSelect]="true" (selectEvent)="onSelect($event)" class="list"></app-list>
 </div>
 <div mat-dialog-actions>

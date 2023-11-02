@@ -21,7 +21,7 @@ import { MatSelect } from '@angular/material/select';
 export class FormComponent implements OnInit {
 
   id: string | null = null;
-  title = 'Create';
+  title = $localize`Create`;
 
   productForm = this.formBuilder.group({
     name: ['', Validators.required],
@@ -56,7 +56,7 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
-      this.title = 'Edit';
+      this.title = $localize`Edit`;
       this.productService.get(+this.id).subscribe({
         next: product => {
           this.productForm.patchValue({

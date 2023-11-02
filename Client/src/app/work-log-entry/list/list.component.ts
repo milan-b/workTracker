@@ -47,7 +47,7 @@ export class ListComponent implements AfterViewInit, OnInit {
 
   goToCreate() {
     if (this.workLog!.isApproved) {
-      this.notificationService.showInfo($localize`You can\'t add entrys to approved work log.`);
+      this.notificationService.showInfo($localize`You can\'t add entries to approved work log.`);
     } else {
       this.router.navigate([routs.WORK_LOG_ENTRY + '/' + this.workLog!.id! + '/' + routs.CREATE]);
     }
@@ -55,7 +55,7 @@ export class ListComponent implements AfterViewInit, OnInit {
 
   goToEdit(workLogEntryId: string) {
     if (this.workLog!.isApproved) {
-      this.notificationService.showInfo($localize`You can\'t change entrys in approved work log.`);
+      this.notificationService.showInfo($localize`You can\'t change entries in approved work log.`);
     } else {
       this.router.navigate([routs.WORK_LOG_ENTRY + '/' + this.workLog!.id! + '/' + routs.EDIT_ID + workLogEntryId]);
     }
@@ -67,7 +67,7 @@ export class ListComponent implements AfterViewInit, OnInit {
 
   delete(workLogEntryId: string) {
     if (this.workLog!.isApproved) {
-      this.notificationService.showInfo($localize`You can\'t change entrys in approved work log.`);
+      this.notificationService.showInfo($localize`You can\'t change entries in approved work log.`);
     } else {
       const data = new YesNoDialog($localize`Are you sure that you want to delete this work log entry?`);
       this.yesNoDialog.open(data).subscribe(result => {
@@ -84,7 +84,7 @@ export class ListComponent implements AfterViewInit, OnInit {
 
   approveWorkLog() {
     if (this.workLog!.isApproved) {
-      this.notificationService.showInfo($localize`this work log is already approved.`)
+      this.notificationService.showInfo($localize`This work log is already approved.`)
     } else {
       this.workLogService.approve(this.workLog!.id!).subscribe(() => {
         this.workLog!.isApproved = true;

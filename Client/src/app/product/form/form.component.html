@@ -2,7 +2,7 @@
   <mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title>
-        <h3 i18n>{{title}}</h3>
+        <h3 >{{title}}</h3>
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
@@ -28,7 +28,7 @@
             </mat-label>
 
             <mat-error i18n *ngIf="ngForm.submitted && productForm.controls['productCategoryId'].hasError('required')">
-              Procut category is <strong>required</strong>
+              Product category is <strong>required</strong>
             </mat-error>
           </div>
 
@@ -36,7 +36,7 @@
             <mat-label i18n>Units</mat-label>
             <input i18n-placeholder="Units" matInput placeholder="Units" formControlName="units">
             <mat-error i18n *ngIf="productForm.controls['units'].hasError('required')">
-              Units is <strong>required</strong>
+              Units are <strong>required</strong>
             </mat-error>
           </mat-form-field>
 

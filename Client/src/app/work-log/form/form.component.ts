@@ -20,7 +20,7 @@ export class FormComponent implements OnInit  {
 
   allProjects$: Observable<Project[] | null>;
   id: string | null = null;
-  title = "Create";
+  title = $localize`Create`;
 
   form = this.formBuilder.group({
     date: [new Date(), Validators.required],
@@ -42,7 +42,7 @@ export class FormComponent implements OnInit  {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
-      this.title = 'Edit';
+      this.title = $localize`Edit`;
       this.workLogService.get(this.id).subscribe({
         next: workLog => {
           this.form.patchValue({

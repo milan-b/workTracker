@@ -17,7 +17,7 @@ import * as routs from 'src/app/routs';
 export class FormComponent implements OnInit {
 
   id: string | null = null;
-  title = 'Create';
+  title = $localize`Create`;
 
   projectForm = this.formBuilder.group({
     name: ['', Validators.required],
@@ -35,7 +35,7 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
-      this.title = 'Edit';
+      this.title = $localize`Edit`;
       this.projectService.get(+this.id).subscribe({
         next: project => {
           this.projectForm.patchValue({

@@ -2,7 +2,7 @@
   <mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title>
-        <h3 i18n>{{title}}</h3>
+        <h3 >{{title}}</h3>
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
@@ -27,7 +27,7 @@
             </mat-label>
 
             <mat-error i18n *ngIf="ngForm.submitted && productCategoryForm.controls['parentId'].hasError('required')">
-              Procut category is <strong>required</strong>
+              Product category is <strong>required</strong>
             </mat-error>
           </div>
 

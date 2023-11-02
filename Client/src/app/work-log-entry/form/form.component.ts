@@ -25,7 +25,7 @@ export class FormComponent {
   units: string[] = [];
   workLogId: string | null = null;
   id: string | null = null;
-  title = "Create";
+  title = $localize`Create`;
 
   form = this.formBuilder.group({
     product: this.formBuilder.control<number | undefined>({ value: undefined, disabled: false }, Validators.required),
@@ -61,7 +61,7 @@ export class FormComponent {
 
   initForm(){
     if (this.id) {
-      this.title = 'Edit';
+      this.title = $localize`Edit`;
       this.workLogEntryService.get(this.workLogId!, this.id).subscribe({
         next: workLogEntry => {
           this.form.patchValue({

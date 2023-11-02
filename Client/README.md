@@ -32,6 +32,8 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Localization
 
 Guide for localization can be found here https://angular.io/guide/i18n-overview
+    * extract dictionary 
+    Run `ng extract-i18n --output-path src/locale`
 
 ## Material design 
 

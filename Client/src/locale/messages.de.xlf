@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="7317190379459027791" datatype="html">
+        <source>Work Tracker</source>
+        <target>Arbeits-Tracker</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/navigation/navigation.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8953033926734869941" datatype="html">
+        <source>Name</source>
+        <target>Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/form/form.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/form/form.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/form/form.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/list/list.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project/form/form.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project/form/form.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project/list/list.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <note priority="1" from="description">Name</note>
+      </trans-unit>
+      <trans-unit id="4192548578052567748" datatype="html">
+        <source> Name is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target>Name ist</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/form/form.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/form/form.component.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project/form/form.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3729072507993534511" datatype="html">
+        <source>Select product category</source>
+        <target>Produktkategorie auswählen</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/form/form.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/form/form.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7708270344948043036" datatype="html">
+        <source> <x id="INTERPOLATION" equiv-text="{{
+                productCategoryForm.controls[&apos;parentId&apos;].value ?
+                productCategories!.get(productCategoryForm.controls[&apos;parentId&apos;].value!)?.name :
+                &quot;Parent&quot;
+              }}"/> </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/form/form.component.html</context>
+          <context context-type="linenumber">21,27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/form/form.component.html</context>
+          <context context-type="linenumber">22,28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.html</context>
+          <context context-type="linenumber">13,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4982140347461350758" datatype="html">
+        <source> Product category is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target> Produktkategorie ist <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>erforderlich<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/form/form.component.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/form/form.component.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5674286808255988565" datatype="html">
+        <source>Create</source>
+        <target>Erstellen</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/form/form.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/form/form.component.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project/form/form.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/form/form.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7585826646011739428" datatype="html">
+        <source>Edit</source>
+        <target>Bearbeiten</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/form/form.component.ts</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/form/form.component.ts</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project/form/form.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.ts</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/form/form.component.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6683614003234258035" datatype="html">
+        <source>Error while getting project.</source>
+        <target>Fehler beim Abrufen des Projekts.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/form/form.component.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project/form/form.component.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4542732605510780223" datatype="html">
+        <source>Product category <x id="prodcut category name" equiv-text="this.productCategoryForm.value.name"/> is saved.</source>
+        <target>Produktkategorie <x id="prodcut category name" equiv-text="this.productCategoryForm.value.name"/> ist gespeichert.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/form/form.component.ts</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="836150648422578070" datatype="html">
+        <source>You can&apos;t delete this category because it has children. Children of this node are: <x id="PH" equiv-text="children"/></source>
+        <target>Sie können diese Kategorie nicht löschen, da sie untergeordnete Elemente hat. Kinder dieses Knotens sind: <x id="PH" equiv-text="children"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/list/list.component.ts</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2679585661046974343" datatype="html">
+        <source>You can&apos;t delete this category because there are some products that belongs to it. Those products are: <x id="PH" equiv-text="productNames"/></source>
+        <target>Sie können diese Kategorie nicht löschen, da einige Produkte dazu gehören. Diese Produkte sind: <x id="PH" equiv-text="productNames"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/list/list.component.ts</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1985477148931377418" datatype="html">
+        <source>Category deleted</source>
+        <target>Kategorie gelöscht</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/list/list.component.ts</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="470337715642501985" datatype="html">
+        <source>Select product category </source>
+        <target>Produktkategorie auswählen </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/select-dialog/select-dialog.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8401157615242034712" datatype="html">
+        <source>Selected: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong *ngIf=&quot;selectedItem&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{selectedItem.name}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target>Ausgewählt: <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong *ngIf=&quot;selectedItem&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{selectedItem.name}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/select-dialog/select-dialog.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8720977247725652816" datatype="html">
+        <source>Ok</source>
+        <target>Ok</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product-category/select-dialog/select-dialog.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9074327260054432941" datatype="html">
+        <source>Units</source>
+        <target>Einheiten</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/form/form.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/form/form.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/list/list.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="623174363384511698" datatype="html">
+        <source> Units are <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target> Einheiten sind <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>erforderlich<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/form/form.component.html</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3768927257183755959" datatype="html">
+        <source>Save</source>
+        <target>Speichern</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/form/form.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project/form/form.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/form/form.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1049474227620749985" datatype="html">
+        <source>Error while getting product.</source>
+        <target>Fehler beim Erhalten des Produkts.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/form/form.component.ts</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4803066183015045622" datatype="html">
+        <source>Product <x id="product name" equiv-text="this.productForm.value.name"/> is saved.</source>
+        <target>Produkt <x id="product name" equiv-text="this.productForm.value.name"/> ist gespeichert.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/form/form.component.ts</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7286430803380181008" datatype="html">
+        <source>Id</source>
+        <target>Id</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/list/list.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project/list/list.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5625149261511186536" datatype="html">
+        <source>Product category</source>
+        <target>Produktkategorie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/product/list/list.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4902817035128594900" datatype="html">
+        <source>Description</source>
+        <target>Beschreibung</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project/form/form.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project/form/form.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project/list/list.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6234566330257093213" datatype="html">
+        <source>Project <x id="project name" equiv-text="this.projectForm.value.name"/> is saved.</source>
+        <target>Projekt <x id="project name" equiv-text="this.projectForm.value.name"/> ist gespeichert.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project/form/form.component.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4207916966377787111" datatype="html">
+        <source>Created</source>
+        <target>Erstellt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/project/list/list.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="187187500641108332" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{data.title}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/dialogs/yes-no-dialog/yes-no-dialog.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/dialogs/yes-no-dialog/yes-no-dialog.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/dialogs/yes-no-dialog/yes-no-dialog.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/dialogs/yes-no-dialog/yes-no-dialog.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3981150915641565546" datatype="html">
+        <source>Filter products by category</source>
+        <target>Filtern Sie Produkte nach Kategorie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3797570084942068182" datatype="html">
+        <source>Select</source>
+        <target>Wählen</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7616770651914901276" datatype="html">
+        <source>Product</source>
+        <target>Produkt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/list/list.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8977166929377162738" datatype="html">
+        <source> Product is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target> Produkt ist <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>erforderlich<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6533918067030990396" datatype="html">
+        <source>Amount</source>
+        <target>Menge</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/list/list.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7440154238970284179" datatype="html">
+        <source> Amount is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target> Menge ist <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>erforderlich<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8932917860978648376" datatype="html">
+        <source>Unit</source>
+        <target>Einheit</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/list/list.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1822912859272493125" datatype="html">
+        <source> Unit is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target> Einheit ist <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>erforderlich<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.html</context>
+          <context context-type="linenumber">59,60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4388879716045736175" datatype="html">
+        <source>Note</source>
+        <target>Notiz</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/list/list.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7090539007000128018" datatype="html">
+        <source>Error while getting work log entry.</source>
+        <target>Fehler beim Abrufen des Arbeitsprotokolleintrags.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.ts</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5914707756343000116" datatype="html">
+        <source>Work log entry is saved.</source>
+        <target>Der Arbeitsprotokolleintrag wird gespeichert.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/form/form.component.ts</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4807831146776029530" datatype="html">
+        <source><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon fontIcon=&quot;{{workLog?.isApproved ? &apos;check_box&apos; : &apos;check_box_outline_blank&apos;}}&quot;&gt;"/><x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Approve </source>
+        <target><x id="START_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;mat-icon fontIcon=&quot;{{workLog?.isApproved ? &apos;check_box&apos; : &apos;check_box_outline_blank&apos;}}&quot;&gt;"/><x id="CLOSE_TAG_MAT_ICON" ctype="x-mat_icon" equiv-text="&lt;/mat-icon&gt;"/> Genehmigen </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/list/list.component.html</context>
+          <context context-type="linenumber">13,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4907269500135199177" datatype="html">
+        <source>You can&apos;t add entries to approved work log.</source>
+        <target>Sie können dem genehmigten Arbeitsprotokoll keine Einträge hinzufügen.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/list/list.component.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8555092279987751872" datatype="html">
+        <source>You can&apos;t change entries in approved work log.</source>
+        <target>Sie können Einträge im genehmigten Arbeitsprotokoll nicht ändern.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/list/list.component.ts</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/list/list.component.ts</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6750926169137233488" datatype="html">
+        <source>Are you sure that you want to delete this work log entry?</source>
+        <target>Sind Sie sicher, dass Sie diesen Arbeitsprotokolleintrag löschen möchten?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/list/list.component.ts</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7010308074754100681" datatype="html">
+        <source>Work log entry is deleted.</source>
+        <target>Der Arbeitsprotokolleintrag wird gelöscht.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/list/list.component.ts</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4729845113598223452" datatype="html">
+        <source>This work log is already approved.</source>
+        <target>Dieses Arbeitsprotokoll ist bereits genehmigt.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/list/list.component.ts</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7558478247234458727" datatype="html">
+        <source>Work log is approved.</source>
+        <target>Arbeitsprotokoll ist genehmigt.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log-entry/list/list.component.ts</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6899410641137821757" datatype="html">
+        <source>Date:</source>
+        <target>Datum:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/form/form.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1472116786707586379" datatype="html">
+        <source> Date is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target> Datum ist <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>erforderlich<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/form/form.component.html</context>
+          <context context-type="linenumber">15,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8117668572148231876" datatype="html">
+        <source>Project</source>
+        <target>Projekt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/form/form.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/list/list.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note priority="1" from="description">Project</note>
+      </trans-unit>
+      <trans-unit id="1548153288720703209" datatype="html">
+        <source> Project is <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>required<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></source>
+        <target> Projekt ist <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>erforderlich<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/form/form.component.html</context>
+          <context context-type="linenumber">31,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1248706485624131099" datatype="html">
+        <source>Error while getting work log.</source>
+        <target>Fehler beim Abrufen des Arbeitsprotokolls.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/form/form.component.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7198460057116145375" datatype="html">
+        <source>Worklog is saved.</source>
+        <target>Arbeitsprotokoll wird gespeichert.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/form/form.component.ts</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4853723322569810336" datatype="html">
+        <source>Filter by project</source>
+        <target>Nach Projekt filtern</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/list/list.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5260257252283452579" datatype="html">
+        <source>Filter by approved</source>
+        <target>Filtern nach genehmigt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/list/list.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3557680752344230129" datatype="html">
+        <source>Is Approved</source>
+        <target>Ist genehmigt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/list/list.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <note priority="1" from="description">Is Approved</note>
+      </trans-unit>
+      <trans-unit id="4861926948802653243" datatype="html">
+        <source> Yes </source>
+        <target> Ja </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/list/list.component.html</context>
+          <context context-type="linenumber">25,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3603720768157919481" datatype="html">
+        <source> No </source>
+        <target> Nein </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/work-log/list/list.component.html</context>
+          <context context-type="linenumber">28,30</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
