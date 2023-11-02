@@ -1,17 +1,26 @@
 <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title i18n>{{title}}</mat-card-title>
+      <mat-card-title i18n><h3>{{title}}</h3></mat-card-title>
     </mat-card-header>
     <mat-card-content>
 
       <div class="row">
         <div class="col">
-          <mat-form-field class="full-width" *ngIf="productCategories">
+          <div class="mb-1" *ngIf="productCategories">
+            <mat-label i18n class="ml-1">Filter products by category</mat-label>
+            <button class="ml-1" type="button" mat-stroked-button (click)="openModal()" i18n>Select</button>
+            <mat-label i18n class="ml-1">
+              {{
+                productCategories!.get(currentProcutCategory)?.name
+              }}
+            </mat-label>
+          </div>
+          <!-- <mat-form-field class="full-width" *ngIf="productCategories">
             <mat-label i18n>Filter products by category</mat-label>
             <input i18n-placeholder="Filter prducts by category" (change)="openModal()" (click)="openModal()" matInput
               placeholder="Filter prducts by category" [value]="productCategories!.get(currentProcutCategory)?.name">
-          </mat-form-field>
+          </mat-form-field> -->
         </div>
         <div class="col">
           <mat-form-field class="full-width">

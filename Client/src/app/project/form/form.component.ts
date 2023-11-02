@@ -17,7 +17,7 @@ import * as routs from 'src/app/routs';
 export class FormComponent implements OnInit {
 
   id: string | null = null;
-  title = 'New';
+  title = 'Create';
 
   projectForm = this.formBuilder.group({
     name: ['', Validators.required],

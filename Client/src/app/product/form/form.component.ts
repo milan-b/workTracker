@@ -21,7 +21,7 @@ import { MatSelect } from '@angular/material/select';
 export class FormComponent implements OnInit {
 
   id: string | null = null;
-  title = 'New';
+  title = 'Create';
 
   productForm = this.formBuilder.group({
     name: ['', Validators.required],

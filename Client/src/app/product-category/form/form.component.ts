@@ -20,7 +20,7 @@ import { MatSelect } from '@angular/material/select';
 export class FormComponent {
 
   id: string | null = null;
-  title = 'New';
+  title = 'Create';
 
   productCategoryForm = this.formBuilder.group({
     name: ['', Validators.required],
