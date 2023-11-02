@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { YesNoDialog } from './yes-no-dialog.model';
+import { YesNoDialog } from '../dialogs/yes-no-dialog/yes-no-dialog.model';
 import { MatDialog } from '@angular/material/dialog';
-import { YesNoDialogComponent } from './yes-no-dialog.component';
+import { YesNoDialogComponent } from '../dialogs/yes-no-dialog/yes-no-dialog.component';
 import { Observable } from 'rxjs';
 
 @Injectable({
