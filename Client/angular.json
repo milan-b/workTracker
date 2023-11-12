@@ -5,8 +5,13 @@
   "projects": {
     "Client": {
       "i18n": {
-        "sourceLocale":"en-US",
-        "locales": {"de-DE": "src/locale/messages.de.xlf"}
+        "sourceLocale": {
+          "code": "en",
+          "baseHref": "/en/"
+        },
+        "locales": {
+          "de": "src/locale/messages.de.xlf"
+        }
       },
       "projectType": "application",
       "schematics": {
@@ -21,7 +26,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "localize":["de-DE"],
+            "localize": [
+              "de",
+              "en"
+            ],
             "outputPath": "dist/client",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -45,8 +53,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -108,6 +116,13 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "version": 2,
+            "browserTarget": "Client:build:production"
           }
         }
       }

@@ -27,7 +27,11 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build --localize` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Deploy to fierbase - it's not working there
+Enable `ng add @angular/fire`
+Run    `ng deploy`
 
 ## Localization
 
