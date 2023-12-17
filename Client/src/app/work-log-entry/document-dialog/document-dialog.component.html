@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Document</h2>
+<mat-dialog-content class="mat-typography">
+<table>
+    <tr>
+      <th i18n>Product</th>
+      <th i18n>Amount</th>
+      <th i18n>Unit</th>
+      <th i18n>Note</th>
+    </tr>
+    <tr *ngFor="let entry of data;">
+      <td>{{entry.productName}}</td>
+      <td>{{entry.amount}}</td>
+      <td>{{entry.unit}}</td>
+      <td>{{entry.note}}</td>
+    </tr>
+    
+</table>
+</mat-dialog-content>
+  

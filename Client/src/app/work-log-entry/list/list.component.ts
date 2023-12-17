@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
 import { ListDataSource } from './list-datasource';
 import { WorkLogEntryService } from '../work-log-entry.service';
 import { WorkLogEntry } from '../work-log-entry.model';
@@ -9,6 +10,7 @@ import * as routs from 'src/app/routs';
 import { WorkLogService } from 'src/app/work-log/work-log.service';
 import { WorkLog } from 'src/app/work-log/work-log.model';
 import { NotificationsService, YesNoDialog, YesNoDialogService } from 'src/app/shared';
+import { DocumentDialogComponent } from '../document-dialog/document-dialog.component';
 
 @Component({
   selector: 'app-list',
@@ -27,7 +29,8 @@ export class ListComponent implements AfterViewInit, OnInit {
     private notificationService: NotificationsService,
     private route: ActivatedRoute,
     private router: Router,
-    private yesNoDialog: YesNoDialogService) {
+    private yesNoDialogService: YesNoDialogService,
+    public dialog: MatDialog) {
   }
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
@@ -70,7 +73,7 @@ export class ListComponent implements AfterViewInit, OnInit {
       this.notificationService.showInfo($localize`You can\'t change entries in approved work log.`);
     } else {
       const data = new YesNoDialog($localize`Are you sure that you want to delete this work log entry?`);
-      this.yesNoDialog.open(data).subscribe(result => {
+      this.yesNoDialogService.open(data).subscribe(result => {
         if(result){
           this.workLogEntryService.delete(workLogEntryId).subscribe(() =>{
             this.notificationService.showInfo($localize`Work log entry is deleted.`);
@@ -83,14 +86,18 @@ export class ListComponent implements AfterViewInit, OnInit {
   }
 
   approveWorkLog() {
-    if (this.workLog!.isApproved) {
-      this.notificationService.showInfo($localize`This work log is already approved.`)
-    } else {
-      this.workLogService.approve(this.workLog!.id!).subscribe(() => {
-        this.workLog!.isApproved = true;
-        this.notificationService.showInfo($localize`Work log is approved.`);
-      });
-    }
+    const dialogRef = this.dialog.open(DocumentDialogComponent, {data: this.dataSource?.getData()});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+    // if (this.workLog!.isApproved) {
+    //   this.notificationService.showInfo($localize`This work log is already approved.`)
+    // } else {
+    //   this.workLogService.approve(this.workLog!.id!).subscribe(() => {
+    //     this.workLog!.isApproved = true;
+    //     this.notificationService.showInfo($localize`Work log is approved.`);
+    //   });
+    // }
   }
 
 }
