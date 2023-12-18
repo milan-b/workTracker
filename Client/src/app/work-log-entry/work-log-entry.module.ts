@@ -5,6 +5,7 @@ import { SharedModule } from '../shared';
 import { ListComponent } from './list/list.component';
 import { FormComponent } from './form/form.component';
 import { DocumentDialogComponent } from './document-dialog/document-dialog.component';
+import { SingPadComponent } from './sing-pad/sing-pad.component';
 
 
 
@@ -12,7 +13,8 @@ import { DocumentDialogComponent } from './document-dialog/document-dialog.compo
   declarations: [
     ListComponent,
     FormComponent,
-    DocumentDialogComponent
+    DocumentDialogComponent,
+    SingPadComponent
   ],
   imports: [
     SharedModule,
