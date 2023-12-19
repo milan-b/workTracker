@@ -1,19 +1,38 @@
-<h2 mat-dialog-title>Document</h2>
-<mat-dialog-content class="mat-typography">
-<table>
-    <tr>
-      <th i18n>Product</th>
-      <th i18n>Amount</th>
-      <th i18n>Unit</th>
-      <th i18n>Note</th>
-    </tr>
-    <tr *ngFor="let entry of data;">
-      <td>{{entry.productName}}</td>
-      <td>{{entry.amount}}</td>
-      <td>{{entry.unit}}</td>
-      <td>{{entry.note}}</td>
-    </tr>
+<div class="page">
+  <div class="page-content" #document>
+    <h2 mat-dialog-title>Document</h2>
+    <mat-dialog-content class="mat-typography">
+      <table>
+        <tr>
+          <th i18n>Product</th>
+          <th i18n>Amount</th>
+          <th i18n>Unit</th>
+          <th i18n>Note</th>
+        </tr>
+        <tr *ngFor="let entry of data.entries;">
+          <td>{{entry.productName}}</td>
+          <td>{{entry.amount}}</td>
+          <td>{{entry.unit}}</td>
+          <td>{{entry.note}}</td>
+        </tr>
+
+      </table>
+      <app-sing-pad></app-sing-pad>
+    </mat-dialog-content>
+  </div>
+  <!-- <button color="basic" 
+        
+        class="btn-download" 
+        (click)="downloadAsPdf()">
+    <mat-icon>clear</mat-icon>
+</button> -->
+  <div class="page-controls">
     
-</table>
-</mat-dialog-content>
-  
+    <button mat-raised-button class="btn-download" (click)="cancel()">
+      <mat-icon>cancel</mat-icon> Cancel
+    </button>
+    <button mat-raised-button color="primary" class="btn-download ml-1" (click)="downloadAsPdf()">
+      <mat-icon>download</mat-icon> Download
+    </button>
+  </div>
+</div>
