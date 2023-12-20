@@ -1,0 +1,7 @@
+    * pravljenje PDFa of HTMLa 
+    https://github.com/parallax/jsPDF , 
+    https://medium.com/@vkbiotech841/how-to-export-html-to-pdf-file-in-angular-2e92ceb7755d
+
+    * crtanje na HTMLu 
+    https://codepen.io/zsolt555/pen/rpPXOB
+    https://stackblitz.com/edit/angular-12-canvas-draw?file=src%2Fapp%2Fapp.component.ts
