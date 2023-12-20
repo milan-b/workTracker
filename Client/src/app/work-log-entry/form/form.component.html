@@ -25,7 +25,7 @@
         <div class="col">
           <mat-form-field class="full-width">
             <mat-label i18n>Product</mat-label>
-            <mat-select (selectionChange)="setUnits()" i18n-placeholder="Select" placeholder="Select"
+            <mat-select (selectionChange)="onProductSelect()" i18n-placeholder="Select" placeholder="Select"
               formControlName="product">
               <mat-option *ngFor="let product of filteredProducts" [value]="product.id">
                 {{ product.name }}

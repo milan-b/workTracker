@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/product/product.model';
 import { ProductService } from 'src/app/product/product.service';
@@ -83,8 +83,12 @@ export class FormComponent {
     }
   }
 
-  setUnits() {
+  onProductSelect(){
     let product = this.products.find(p => p.id === this.form.value.product);
+    this.setUnits(product);
+  }
+
+  setUnits(product: Product | undefined) { 
     if (product) {
       this.units = product.units!.split(',').map(i => i.trim());
       this.form.patchValue({
