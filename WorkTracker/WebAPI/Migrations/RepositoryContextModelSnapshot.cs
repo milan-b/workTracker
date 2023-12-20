@@ -34,6 +34,9 @@ namespace WebAPI.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("ProductCategoryId")
                         .HasColumnType("INTEGER");
 
@@ -45,6 +48,8 @@ namespace WebAPI.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
 
                     b.HasIndex("ProductCategoryId");
 
@@ -181,11 +186,18 @@ namespace WebAPI.Migrations
 
             modelBuilder.Entity("Entities.Models.Product", b =>
                 {
+                    b.HasOne("Entities.Models.Product", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("Entities.Models.ProductCategory", "ProductCategory")
                         .WithMany("Products")
                         .HasForeignKey("ProductCategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Parent");
 
                     b.Navigation("ProductCategory");
                 });

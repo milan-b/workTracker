@@ -23,8 +23,7 @@ export class DocumentDialogComponent {
     public dialogRef: MatDialogRef<DocumentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {entries: WorkLogEntry[], workLog: WorkLog},
   ) {
-    console.log(data);
-    this.pdfName = moment(data.workLog.date).format('YYYY.MM.DD') + ' - ' + data.workLog.projectName;
+    this.pdfName = moment().format('YYYY.MM.DD') + ' - ' + data.workLog.projectName;
   }
 
   cancel(){
@@ -53,7 +52,7 @@ export class DocumentDialogComponent {
          pdf.setFontSize(12);
         // pdf.setTextColor('#131523');
         pdf.text(moment().format('DD.MM.YYYY'), 25, 25);
-        pdf.addImage(result, 'PNG', 25, 185, width, height);
+        pdf.addImage(result, 'PNG', 25, 50, width, height);
         pdf.save(this.pdfName + '.pdf');
       })
       .catch(error => {

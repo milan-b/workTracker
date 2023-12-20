@@ -15,6 +15,11 @@ namespace Entities.Models
         [StringLength(60, ErrorMessage = "Name can't be longer than 60 characters")]
         public String Name { get; set; }
 
+        [ForeignKey(nameof(Product))]
+        public int? ParentId { get; set; }
+
+        public Product? Parent { get; set; }
+
         [Required]
         // Example "m, mm, cm, km"
         public String? Units { get; set; }

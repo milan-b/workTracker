@@ -9,6 +9,7 @@ namespace Entities.Extensions
         public static void Map(this Product product, ProductIDTO productDTO)
         {
             product.Name = productDTO.Name;
+            product.ParentId = productDTO.ParentId;
             product.Units = productDTO.Units;
             product.ProductCategoryId = productDTO.ProductCategoryId;
         }
@@ -19,6 +20,7 @@ namespace Entities.Extensions
             {
                 Id = product.Id,
                 Name = product.Name,
+                ParentId = product.ParentId,
                 Units = product.Units,
                 ProductCategoryId = product.ProductCategoryId
             };

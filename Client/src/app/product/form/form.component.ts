@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 import * as routs from 'src/app/routs';
 import { ProductService } from '../product.service';
 import { Product } from '../product.model';
-import { Observable } from 'rxjs';
 import { ProductCategory, ProductCategoryService, SelectDialogComponent } from 'src/app/product-category';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSelect } from '@angular/material/select';
@@ -23,9 +22,13 @@ export class FormComponent implements OnInit {
   id: string | null = null;
   title = $localize`Create`;
 
+  products: Product[] = [];
+  //filteredProducts: Product[] = [];
+
   productForm = this.formBuilder.group({
     name: ['', Validators.required],
-    productCategoryId: this.formBuilder.control<number | undefined>({value: undefined, disabled: false}, Validators.required),
+    parent: this.formBuilder.control<number | undefined>({ value: undefined, disabled: false }),
+    productCategoryId: this.formBuilder.control<number | undefined>({ value: undefined, disabled: false }, Validators.required),
     units: ['', Validators.required]
   });
 
@@ -34,8 +37,6 @@ export class FormComponent implements OnInit {
 
   @ViewChild(MatSelect)
   productCategorySelect: MatSelect | undefined;
-
-  // allProductCategories$: Observable<ProductCategory[]  | null>;
   productCategories: Map<number, ProductCategory> | null = null;
 
   constructor(
@@ -46,11 +47,14 @@ export class FormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private dialog: MatDialog) {
-      // this.allProductCategories$ = this.productCategoryService.getAll();
-      this.productCategoryService.getAll().subscribe(result => {
-        this.productCategories = result;
-      });
-     }
+    productService.getAll().subscribe(products => {
+      this.products = products!;
+      //this.filteredProducts = this.products;
+    });
+    this.productCategoryService.getAll().subscribe(result => {
+      this.productCategories = result;
+    });
+  }
 
 
   ngOnInit(): void {
@@ -61,8 +65,9 @@ export class FormComponent implements OnInit {
         next: product => {
           this.productForm.patchValue({
             name: product?.name,
+            parent: product?.parentId,
             productCategoryId: product?.productCategoryId,
-            units : product?.units
+            units: product?.units
           });
         },
         error: () => {
@@ -73,17 +78,25 @@ export class FormComponent implements OnInit {
     }
   }
 
-  openModal(): void{
+  openModal(): void {
     const dialogRef = this.dialog.open(SelectDialogComponent, {
       disableClose: false
     });
 
     dialogRef.afterClosed().subscribe((result: TreeNode) => {
       this.productCategorySelect?.close();
-      console.log(result, 'result from modala');
       this.productForm.patchValue({
         productCategoryId: result?.id
       });
+      // if (result) {
+      //   if (result.id === 1) {
+      //     this.filteredProducts = this.products;
+      //   } else {
+      //     let filteredCategories = this.productCategoryService.getAllSubcategories(result).map(o => o.id);
+      //     filteredCategories.push(result.id);
+      //     this.filteredProducts = this.products.filter(p => filteredCategories.indexOf(p.productCategoryId) > -1);
+      //   }
+      // }
     });
   }
 
@@ -102,6 +115,7 @@ export class FormComponent implements OnInit {
   private getModelFromForm(): Product {
     return {
       name: this.productForm.value.name!,
+      parentId: this.productForm.value.parent === null ? undefined : this.productForm.value.parent,
       units: this.productForm.value.units!,
       productCategoryId: this.productForm.value.productCategoryId!
     }
