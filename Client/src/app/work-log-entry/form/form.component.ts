@@ -85,10 +85,11 @@ export class FormComponent {
 
   onProductSelect(){
     let product = this.products.find(p => p.id === this.form.value.product);
-    this.setUnits(product);
+    this.setUnits();
   }
 
-  setUnits(product: Product | undefined) { 
+  setUnits() { 
+    let product = this.products.find(p => p.id === this.form.value.product);
     if (product) {
       this.units = product.units!.split(',').map(i => i.trim());
       this.form.patchValue({
