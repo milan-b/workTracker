@@ -22,17 +22,13 @@ export class FormComponent {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   productCategories: Map<number, ProductCategory> | null = null;
-  units: string[] = [];
+  unitsByProduct: Map<number | undefined, string[]> = new Map<number | undefined, string[]>();
   workLogId: string | null = null;
   id: string | null = null;
   title = $localize`Create`;
 
-  form = this.formBuilder.group({
-    product: this.formBuilder.control<number | undefined>({ value: undefined, disabled: false }, Validators.required),
-    amount: [0, Validators.required],
-    unit: ['', Validators.required],
-    note: ['']
-  });
+  form = this.getNewForm();
+  childProductForms : FormGroup[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,6 +40,7 @@ export class FormComponent {
     private dialog: MatDialog,
     productService: ProductService
   ) {
+    this.unitsByProduct.set(undefined, []);
     productService.getAll().subscribe(products => {
       this.products = products!;
       this.filteredProducts = this.products;
@@ -70,7 +67,8 @@ export class FormComponent {
             unit: workLogEntry?.unit,
             note: workLogEntry?.note
           });
-          this.setUnits();
+          let product = this.products.find(p => p.id === this.form.value.product);
+          this.setUnits(product, this.form);
           this.form.patchValue({
             unit: workLogEntry?.unit
           });
@@ -83,22 +81,36 @@ export class FormComponent {
     }
   }
 
-  onProductSelect(){
-    let product = this.products.find(p => p.id === this.form.value.product);
-    this.setUnits();
+  getNewForm(){
+    return this.formBuilder.group({
+      product: this.formBuilder.control<number | undefined>({ value: undefined, disabled: false }, Validators.required),
+      amount: [0, Validators.required],
+      unit: ['', Validators.required],
+      note: ['']
+    });
   }
 
-  setUnits() { 
+  onProductSelect(){
+    let childProducts = this.products.filter(p => p.parentId === this.form.value.product);
+    childProducts.forEach(product =>{
+
+    })
+    
     let product = this.products.find(p => p.id === this.form.value.product);
+    this.setUnits(product, this.form);
+  }
+
+  setUnits(product: Product | undefined, form: FormGroup) {
     if (product) {
-      this.units = product.units!.split(',').map(i => i.trim());
-      this.form.patchValue({
-        unit: this.units[0]
+      let units = product.units!.split(',').map(i => i.trim());
+      this.unitsByProduct.set(product.id, units) ;
+      form.patchValue({
+        unit: units[0]
       });
     }
-    else {
-      this.units = [];
-    }
+    // else {
+    //   this.units = [];
+    // }
   }
 
   onSubmit(): void {

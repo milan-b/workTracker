@@ -18,7 +18,7 @@ import { SingPadComponent } from './sing-pad/sing-pad.component';
   ],
   imports: [
     SharedModule,
-    WorkLogEntryRoutingModule,
+    WorkLogEntryRoutingModule
   ]
 })
 export class WorkLogEntryModule { }

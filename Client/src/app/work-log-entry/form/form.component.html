@@ -49,10 +49,10 @@
           </mat-form-field>
         </div>
         <div class="col">
-          <mat-form-field class="full-width">
+          <mat-form-field *ngIf="form.value.product" class="full-width">
             <mat-label i18n>Unit</mat-label>
-            <mat-select i18n-placeholder="Select" placeholder="Select" formControlName="unit">
-              <mat-option *ngFor="let unit of units" [value]="unit">
+            <mat-select  i18n-placeholder="Select" placeholder="Select" formControlName="unit">
+              <mat-option *ngFor="let unit of unitsByProduct.get(form.value.product)" [value]="unit">
                 {{ unit }}
               </mat-option>
             </mat-select>
