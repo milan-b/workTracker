@@ -1,10 +1,12 @@
-<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
-  <mat-card class="shipping-card">
+<form [formGroup]="form" novalidate>
+  <mat-card>
     <mat-card-header>
-      <mat-card-title><h3>{{title}}</h3></mat-card-title>
+      <mat-card-title>
+        <h3>{{title}}</h3>
+      </mat-card-title>
     </mat-card-header>
-    <mat-card-content>
 
+    <mat-card-content>
       <div class="row">
         <div class="col">
           <div class="mb-1" *ngIf="productCategories">
@@ -12,15 +14,10 @@
             <button class="ml-1" type="button" mat-stroked-button (click)="openModal()" i18n>Select</button>
             <mat-label i18n class="ml-1">
               {{
-                productCategories!.get(currentProcutCategory)?.name
+              productCategories!.get(currentProcutCategory)?.name
               }}
             </mat-label>
           </div>
-          <!-- <mat-form-field class="full-width" *ngIf="productCategories">
-            <mat-label i18n>Filter products by category</mat-label>
-            <input i18n-placeholder="Filter prducts by category" (change)="openModal()" (click)="openModal()" matInput
-              placeholder="Filter prducts by category" [value]="productCategories!.get(currentProcutCategory)?.name">
-          </mat-form-field> -->
         </div>
         <div class="col">
           <mat-form-field class="full-width">
@@ -51,7 +48,7 @@
         <div class="col">
           <mat-form-field *ngIf="form.value.product" class="full-width">
             <mat-label i18n>Unit</mat-label>
-            <mat-select  i18n-placeholder="Select" placeholder="Select" formControlName="unit">
+            <mat-select i18n-placeholder="Select" placeholder="Select" formControlName="unit">
               <mat-option *ngFor="let unit of unitsByProduct.get(form.value.product)" [value]="unit">
                 {{ unit }}
               </mat-option>
@@ -73,8 +70,65 @@
       </div>
 
     </mat-card-content>
-    <mat-card-actions>
+    <!-- <mat-card-actions>
       <button mat-raised-button color="primary" type="submit" i18n>Save</button>
-    </mat-card-actions>
+    </mat-card-actions> -->
   </mat-card>
 </form>
+@for(childProductForm of childProductForms; track childProductForm.value.product){
+<form [formGroup]="childProductForm" novalidate>
+  <mat-card>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <p class="full-width">
+            <span i18n>Child product: </span>
+            <span>{{productNamesByIds[childProductForm.value.product]}}</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label i18n>Amount</mat-label>
+            <input matInput type="number" i18n-placeholder="Amount" formControlName="amount">
+            <mat-error i18n *ngIf="childProductForm.controls['amount'].hasError('required')">
+              Amount is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label i18n>Unit</mat-label>
+            <mat-select i18n-placeholder="Select" placeholder="Select" formControlName="unit">
+              <mat-option *ngFor="let unit of unitsByProduct.get(childProductForm.value.product)" [value]="unit">
+                {{ unit }}
+              </mat-option>
+            </mat-select>
+            <mat-error i18n *ngIf="childProductForm.controls['unit'].hasError('required')">
+              Unit is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label i18n>Note</mat-label>
+            <input matInput type="text" i18n-placeholder="Note" placeholder="Note" formControlName="note">
+          </mat-form-field>
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</form>
+}
+
+<mat-card>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="onSubmit()" i18n>Save</button>
+  </mat-card-actions>
+</mat-card>

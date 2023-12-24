@@ -20,6 +20,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class FormComponent {
   currentProcutCategory : number = 1;
   products: Product[] = [];
+  productNamesByIds: string[] = [];
   filteredProducts: Product[] = [];
   productCategories: Map<number, ProductCategory> | null = null;
   unitsByProduct: Map<number | undefined, string[]> = new Map<number | undefined, string[]>();
@@ -43,6 +44,7 @@ export class FormComponent {
     this.unitsByProduct.set(undefined, []);
     productService.getAll().subscribe(products => {
       this.products = products!;
+      this.products.forEach(product =>{ this.productNamesByIds[product.id!] = product.name;})
       this.filteredProducts = this.products;
     });
     this.productCategoryService.getAll().subscribe(result => {
@@ -91,13 +93,24 @@ export class FormComponent {
   }
 
   onProductSelect(){
-    let childProducts = this.products.filter(p => p.parentId === this.form.value.product);
-    childProducts.forEach(product =>{
-
-    })
-    
+    this.setChildProducts();
     let product = this.products.find(p => p.id === this.form.value.product);
     this.setUnits(product, this.form);
+  }
+
+  setChildProducts(){
+    this.childProductForms = [];
+    let childProducts = this.products.filter(p => p.parentId === this.form.value.product);
+    childProducts.forEach(product =>{
+      let form = this.getNewForm();
+      this.setUnits(product, form);
+      form.patchValue({
+        product: product.id
+      });
+      this.childProductForms.push(form);
+    });
+
+    console.log(childProducts, this.products);
   }
 
   setUnits(product: Product | undefined, form: FormGroup) {
@@ -108,9 +121,6 @@ export class FormComponent {
         unit: units[0]
       });
     }
-    // else {
-    //   this.units = [];
-    // }
   }
 
   onSubmit(): void {
