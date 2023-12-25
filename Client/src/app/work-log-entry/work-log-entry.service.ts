@@ -40,8 +40,8 @@ export class WorkLogEntryService {
     return this.dataService.post(this.url, workLogEntry);
   }
 
-  update(workLogEntry: WorkLogEntry[]): Observable<Object>{
-    return this.dataService.put(this.url, workLogEntry);
+  update(workLogEntries: WorkLogEntry[]): Observable<Object>{
+    return this.dataService.put(this.url, workLogEntries);
   }
 
   delete(id: string):Observable<Object>{
