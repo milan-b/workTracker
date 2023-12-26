@@ -1,7 +1,7 @@
 <mat-dialog-content class="mat-typography dialog">
   <div class="page">
-    <div *ngIf="project" class="ml-1 mat-dialog-title">
-      <h2>{{project.name}}</h2>
+    <div class="ml-1 mat-dialog-title">
+      <h2>{{project?.name}}</h2>
     </div>
     <div class="page-border">
       <div class="page-content" #document>
@@ -16,11 +16,11 @@
         </div>
         <div class="row">
           <div class="col">
-            <textarea disabled *ngIf="project" class="customer full-width ml-1" cdkAutosizeMinRows="5"
-              [value]="project.customer"></textarea>
+            <textarea disabled class="customer full-width ml-1" cdkAutosizeMinRows="5"
+              [value]="project?.customer"></textarea>
           </div>
           <div class="col contact-info">
-            <textarea disabled class="contact-info-content full-width" [value]="contactInfo" ></textarea>
+            <textarea disabled class="contact-info-content full-width" [value]="contactInfo"></textarea>
           </div>
         </div>
 
@@ -31,17 +31,29 @@
             <th i18n>Product</th>
             <th i18n>Amount</th>
             <th i18n>Unit</th>
-            <th i18n>Note</th>
+            <!-- <th i18n>Note</th> -->
           </tr>
           <tr *ngFor="let entry of data.entries;">
             <td>{{entry.productName}}</td>
-            <td>{{entry.amount}}</td>
-            <td>{{entry.unit}}</td>
-            <td>{{entry.note}}</td>
+            <td class="text-end">{{entry.amount}}</td>
+            <td class="text-start">{{entry.unit}}</td>
+            <!-- <td>{{entry.note}}</td> -->
           </tr>
 
         </table>
-        <app-sing-pad></app-sing-pad>
+        <div class="row signatures">
+          <div class="col bottom">
+            <span class="signature-data"> 
+              {{project?.city}} ,dan {{data.workLog.date | date:"dd.MM.YYYY."}}
+            </span>
+            <!-- <span class="signature-space ml-1"> </span> -->
+          </div>
+          <div class="col bottom">
+            <span class="signature-space ml-1">(Unterschrift Kunde)</span>
+            <span class="signature-space ml-1">(Unterschrift A.N.)</span>
+          </div>
+        </div>
+        <!-- <app-sing-pad></app-sing-pad> -->
 
       </div>
     </div>

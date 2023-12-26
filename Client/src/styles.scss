@@ -17,6 +17,19 @@
     text-align: right;
 }
 
+.text-start {
+    text-align: left;
+}
+
+.text-end {
+    text-align: right;
+}
+
+.bottom {
+    display: flex;
+    align-items: end;
+}
+
 /*** FLEX ***/
 .full-width {
     width: 100%;

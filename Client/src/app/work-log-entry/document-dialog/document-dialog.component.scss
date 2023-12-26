@@ -38,12 +38,11 @@ table {
 td,
 th {
   border: 1px solid #dddddd;
-  text-align: left;
   padding: 8px;
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #f8f8f8;
 }
 
 .paint-canvas {
@@ -88,4 +87,20 @@ textarea {
   resize: none;
   background-color: transparent !important;
   /*remove the resize handle on the bottom right*/
+}
+
+.signatures{
+  height: 10rem;
+}
+
+.signature-space{
+  border-top: 0.1rem black solid;
+  text-align: center;
+  font-size: small;
+  width: 40%;
+}
+
+.signature-data {
+  margin-bottom: 1rem;
+  color: black;
 }
