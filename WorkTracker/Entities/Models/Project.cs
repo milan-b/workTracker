@@ -16,6 +16,11 @@ namespace Entities.Models
         [Required] 
         public String Name { get; set; }
 
+        [Required]
+        public String Customer { get; set; }
+
+        public String City { get; set; }
+
         public String? Description { get; set; }
 
         public ICollection<WorkLog> WorkLogs { get; set; }

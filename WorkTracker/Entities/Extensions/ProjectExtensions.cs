@@ -10,6 +10,8 @@ namespace Entities.Extensions
         {
             project.Name = projectDTO.Name;
             project.Description = projectDTO.Description;
+            project.City = projectDTO.City;
+            project.Customer = projectDTO.Customer;
         }
 
         public static ProjectODTO ToDTO(this Project project)
@@ -20,7 +22,9 @@ namespace Entities.Extensions
                 Name = project.Name,
                 Description = project.Description,
                 CreatedDate = project.CreatedDate,
-                UpdatedDate = project.UpdatedDate
+                UpdatedDate = project.UpdatedDate,
+                City = project.City,
+                Customer = project.Customer
             };
         }
 

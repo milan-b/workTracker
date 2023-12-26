@@ -8,6 +8,10 @@ namespace Entities.DataTransferObjects.Incoming
 
         public string Description { get; init; }
 
+        public string Customer { get; set; }
+
+        public string City { get; set; }
+
     }
 
 }

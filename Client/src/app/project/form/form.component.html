@@ -18,6 +18,20 @@
             <mat-label i18n>Description</mat-label>
             <input i18n-placeholder="Description" matInput placeholder="Description" formControlName="description">
           </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label i18n>City</mat-label>
+            <input i18n-placeholder="City" matInput placeholder="City" formControlName="city">
+            <mat-error i18n *ngIf="projectForm.controls['city'].hasError('required')">
+              City is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="customer-field">
+            <mat-label i18n>Customer</mat-label>
+            <textarea class="customer" cdkAutosizeMinRows="5" i18n-placeholder="Customer" matInput placeholder="Customer" formControlName="customer"></textarea>
+            <mat-error i18n *ngIf="projectForm.controls['customer'].hasError('required')">
+              Customer is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
         </div>
       </div>
       

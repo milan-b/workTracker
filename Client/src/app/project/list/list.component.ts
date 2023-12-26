@@ -22,7 +22,7 @@ export class ListComponent implements AfterViewInit {
   dataSource = new ListDataSource(this.projectService);
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['name', 'createdDate', 'description', 'actions'];
+  displayedColumns = ['name', 'createdDate', 'description', 'city', 'customer', 'actions'];
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;

@@ -11,6 +11,10 @@ namespace Entities.DataTransferObjects.Outcoming
 
         public string? Description { get; init; }
 
+        public string Customer { get; set; }
+
+        public string City { get; set; }
+
         public DateTime CreatedDate { get; init; }
 
         public DateTime UpdatedDate { get; init; }

@@ -3,4 +3,6 @@ export interface Project {
     name: string;
     description?: string;
     createdDate?: Date;
+    customer: string;
+    city: string;
 }

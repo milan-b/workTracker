@@ -21,7 +21,9 @@ export class FormComponent implements OnInit {
 
   projectForm = this.formBuilder.group({
     name: ['', Validators.required],
-    description: ''
+    description: '',
+    city: ['', Validators.required],
+    customer: ['', Validators.required]
   });
 
   constructor(
@@ -40,7 +42,9 @@ export class FormComponent implements OnInit {
         next: project => {
           this.projectForm.patchValue({
             name: project?.name,
-            description: project?.description
+            description: project?.description,
+            city: project?.city,
+            customer: project?.customer
           });
         },
         error: () => {
@@ -66,7 +70,9 @@ export class FormComponent implements OnInit {
   private getModelFromForm(): Project {
     return {
       name: this.projectForm.value.name!,
-      description: this.projectForm.value.description!
+      description: this.projectForm.value.description!,
+      city: this.projectForm.value.city!,
+      customer: this.projectForm.value.customer!
     }
   }
 }

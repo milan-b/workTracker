@@ -71,6 +71,8 @@ export class ListDataSource extends DataSource<Project> {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
         case 'name': return compare(a.name, b.name, isAsc);
+        case 'city': return compare(a.city, b.city, isAsc);
+        case 'customer': return compare(a.customer, b.customer, isAsc);
         case 'createdDate': return compare('' + a.createdDate, '' + b.createdDate, isAsc);
         default: return 0;
       }

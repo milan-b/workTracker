@@ -25,3 +25,12 @@
 .col:last-child {
   margin-right: 0;
 }
+
+.customer{
+  min-height: 20vh;
+
+}
+
+.customer-field{
+  width: 20rem;
+}

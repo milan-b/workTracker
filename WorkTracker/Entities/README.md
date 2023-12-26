@@ -18,4 +18,4 @@ https://code-maze.com/async-generic-repository-pattern/
 
 	==============================================TODO=========================
 
-	*	add date created, and user u sve tabele  - ima u hrani
+	*	add date created, and user in all tables  - ima u hrani
