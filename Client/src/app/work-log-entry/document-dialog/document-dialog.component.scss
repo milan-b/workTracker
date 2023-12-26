@@ -1,24 +1,30 @@
 .dialog {
   min-height: 95vh;
+  min-width: 45rem;
 }
 
-.page, {
+::ng-deep .cdk-overlay-pane {
+  max-width: 95vw !important;
+  min-width: 50rem;
+}
+
+.page {
   //2480 x 3508 pixels
   //min-height: 95vh;
   // overflow: scroll;
 }
 
-.page-border{
+.page-border {
   border: 0.1rem gray dashed;
 }
 
-.page-content{
+.page-content {
 
   // width: 2480px;
   // height: 2508px;
 }
 
-.page-controls{
+.page-controls {
   float: right;
   padding: 1rem;
 }
@@ -44,4 +50,42 @@ tr:nth-child(even) {
   border: 1px black solid;
   display: block;
   margin: 1rem;
+}
+
+.logo {
+  width: 4rem;
+  height: 4rem;
+}
+
+.logo-text {
+  font-weight: bold;
+  color: #ec523f;
+  vertical-align: middle;
+  height: 100%;
+  display: inline-block;
+}
+
+.customer,
+.contact-info-content {
+  border: none;
+  min-height: 5rem;
+  overflow-y: hidden;
+}
+
+.contact-info {
+  padding-right: 20px;
+}
+
+textarea {
+  border: none;
+  overflow: auto;
+  outline: none;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none;
+  background-color: transparent !important;
+  /*remove the resize handle on the bottom right*/
 }

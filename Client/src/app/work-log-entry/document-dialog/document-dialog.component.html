@@ -1,6 +1,6 @@
 <mat-dialog-content class="mat-typography dialog">
   <div class="page">
-    <div *ngIf="project" class="ml-1">
+    <div *ngIf="project" class="ml-1 mat-dialog-title">
       <h2>{{project.name}}</h2>
     </div>
     <div class="page-border">
@@ -10,13 +10,21 @@
             <h3>Lieferschein</h3>
           </div>
           <div class="col">
-            <img src="/assets/img/pile_logo1.png" />
+            <img class="logo mt-01" src="/assets/img/pile_logo.png" />
+            <span class="logo-text ml-1">INDUSTRIE HAUS SERVICE MP</span>
           </div>
         </div>
-        <div *ngIf="project" class="header">
-          <h2>{{project.customer}}</h2>
+        <div class="row">
+          <div class="col">
+            <textarea disabled *ngIf="project" class="customer full-width ml-1" cdkAutosizeMinRows="5"
+              [value]="project.customer"></textarea>
+          </div>
+          <div class="col contact-info">
+            <textarea disabled class="contact-info-content full-width" [value]="contactInfo" ></textarea>
+          </div>
         </div>
-        <!-- <h2 mat-dialog-title>{{data.workLog.projectName}}</h2> -->
+
+
 
         <table>
           <tr>

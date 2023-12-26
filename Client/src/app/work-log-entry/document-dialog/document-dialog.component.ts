@@ -9,6 +9,7 @@ import { WorkLog } from 'src/app/work-log/work-log.model';
 import { ProjectService } from 'src/app/project/project.service';
 import { Project } from 'src/app/project/project.model';
 import { YesNoDialog, YesNoDialogService } from 'src/app/shared';
+import { contantInfo } from './contact-info';
 
 
 @Component({
@@ -17,6 +18,7 @@ import { YesNoDialog, YesNoDialogService } from 'src/app/shared';
   styleUrls: ['./document-dialog.component.scss']
 })
 export class DocumentDialogComponent {
+  contactInfo = contantInfo;
 
   @ViewChild('document')
   public document!: ElementRef;
