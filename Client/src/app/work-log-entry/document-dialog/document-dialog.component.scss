@@ -1,5 +1,17 @@
+//2480 x 3508 pixels
 .page {
-  height: 80vh;
+  min-height: 80vh;
+  // overflow: scroll;
+}
+
+.page-border{
+  border: 0.1rem gray dashed;
+}
+
+.page-content{
+
+  // width: 2480px;
+  // height: 2508px;
 }
 
 .page-controls{

@@ -6,6 +6,8 @@ import domToImage from 'dom-to-image';
 import {jsPDF, jsPDFOptions} from 'jspdf';
 import * as moment from 'moment';
 import { WorkLog } from 'src/app/work-log/work-log.model';
+import { ProjectService } from 'src/app/project/project.service';
+import { Project } from 'src/app/project/project.model';
 
 
 @Component({
@@ -18,12 +20,15 @@ export class DocumentDialogComponent {
   @ViewChild('document')
   public document!: ElementRef;
   pdfName: string = '';
+  public project: Project | null = null;
 
   constructor(
+    private projectService: ProjectService,
     public dialogRef: MatDialogRef<DocumentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {entries: WorkLogEntry[], workLog: WorkLog},
   ) {
     this.pdfName = moment().format('YYYY.MM.DD') + ' - ' + data.workLog.projectName;
+    projectService.get(data.workLog.projectId).subscribe(project => this.project = project);
   }
 
   cancel(){
