@@ -3,11 +3,12 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { WorkLogEntry } from '../work-log-entry.model';
 
 import domToImage from 'dom-to-image';
-import {jsPDF, jsPDFOptions} from 'jspdf';
+import { jsPDF, jsPDFOptions } from 'jspdf';
 import * as moment from 'moment';
 import { WorkLog } from 'src/app/work-log/work-log.model';
 import { ProjectService } from 'src/app/project/project.service';
 import { Project } from 'src/app/project/project.model';
+import { YesNoDialog, YesNoDialogService } from 'src/app/shared';
 
 
 @Component({
@@ -24,15 +25,21 @@ export class DocumentDialogComponent {
 
   constructor(
     private projectService: ProjectService,
+    private yesNoDialogService: YesNoDialogService,
     public dialogRef: MatDialogRef<DocumentDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {entries: WorkLogEntry[], workLog: WorkLog},
+    @Inject(MAT_DIALOG_DATA) public data: { entries: WorkLogEntry[], workLog: WorkLog },
   ) {
     this.pdfName = moment().format('YYYY.MM.DD') + ' - ' + data.workLog.projectName;
     projectService.get(data.workLog.projectId).subscribe(project => this.project = project);
   }
 
-  cancel(){
-    this.dialogRef.close();
+  cancel() {
+    const data = new YesNoDialog($localize`Are you sure that you want to close this document?`);
+    this.yesNoDialogService.open(data).subscribe(result => {
+      if (result) {
+        this.dialogRef.close();
+      }
+    });
   }
 
   public downloadAsPdf(): void {
@@ -45,16 +52,16 @@ export class DocumentDialogComponent {
         height: height
       })
       .then(result => {
-        let jsPdfOptions : jsPDFOptions = {
+        let jsPdfOptions: jsPDFOptions = {
           orientation: 'p',
           unit: 'pt',
           format: [width + 50, height + 220]
-        } ;
+        };
         const pdf = new jsPDF(jsPdfOptions);
         // pdf.setFontSize(48);
         // pdf.setTextColor('#2585fe');
         // pdf.text(this.pdfName.value ? this.pdfName.value.toUpperCase() : 'Untitled dashboard'.toUpperCase(), 25, 75);
-         pdf.setFontSize(12);
+        pdf.setFontSize(12);
         // pdf.setTextColor('#131523');
         pdf.text(moment().format('DD.MM.YYYY'), 25, 25);
         pdf.addImage(result, 'PNG', 25, 50, width, height);

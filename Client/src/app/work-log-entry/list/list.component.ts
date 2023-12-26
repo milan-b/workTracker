@@ -86,11 +86,14 @@ export class ListComponent implements AfterViewInit, OnInit {
   }
 
   approveWorkLog() {
-    const dialogRef = this.dialog.open(DocumentDialogComponent, {data:
-      {
-       entries: this.dataSource?.getData(),
-       workLog: this.workLog
-      }});
+    const dialogRef = this.dialog.open(DocumentDialogComponent, {
+      data:
+        {
+        entries: this.dataSource?.getData(),
+        workLog: this.workLog
+        },
+        disableClose: true
+      });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
