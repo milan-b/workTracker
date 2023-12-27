@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { AfterViewInit, Component, HostListener, ViewChild, ElementRef, Input } from '@angular/core';
 
 @Component({
   selector: 'app-sing-pad',
@@ -6,6 +6,9 @@ import { AfterViewInit, Component, HostListener, ViewChild, ElementRef } from '@
   styleUrls: ['./sing-pad.component.scss']
 })
 export class SingPadComponent implements AfterViewInit {
+  @Input({ required: true })
+  public width!: number;
+
   @ViewChild('canvas')
   private _canvas!: ElementRef<HTMLCanvasElement>;
   private context!: CanvasRenderingContext2D;
@@ -56,6 +59,8 @@ export class SingPadComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    console.log('dimenzija iz sign ', this._canvas.nativeElement.offsetWidth, ' ', this.width);
+    this._canvas.nativeElement.width = this.width;
     let context = (this._canvas.nativeElement.getContext('2d'))!;
     context.lineCap = 'round';
     context.lineJoin = 'round';
@@ -67,9 +72,9 @@ export class SingPadComponent implements AfterViewInit {
     this.redraw();
   }
 
-  constructor() {}
+  constructor() { }
 
-  clear(){
+  clear() {
     this.clearCanvas();
   }
 

@@ -41,17 +41,17 @@
           </tr>
 
         </table>
-        <div class="row signatures">
-          <div class="col bottom">
-            <span class="signature-data"> 
-              {{project?.city}} ,dan {{data.workLog.date | date:"dd.MM.YYYY."}}
+        <div #signContainer class="row signatures">
+          <div class="bottom signatures-area">
+            <span class="signature-data ml-1">
+              {{project?.city}} ,dan {{date | date:"dd.MM.YYYY."}}
             </span>
             <!-- <span class="signature-space ml-1"> </span> -->
-          </div>
-          <div class="col bottom">
+
             <span class="signature-space ml-1">(Unterschrift Kunde)</span>
             <span class="signature-space ml-1">(Unterschrift A.N.)</span>
           </div>
+          <app-sing-pad [width]="signContainer.offsetWidth" class="sing-pad"></app-sing-pad>
         </div>
         <!-- <app-sing-pad></app-sing-pad> -->
 

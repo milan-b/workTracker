@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, Inject, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { WorkLogEntry } from '../work-log-entry.model';
 
@@ -17,16 +17,17 @@ import { contantInfo } from './contact-info';
   templateUrl: './document-dialog.component.html',
   styleUrls: ['./document-dialog.component.scss']
 })
-export class DocumentDialogComponent {
+export class DocumentDialogComponent implements AfterViewInit{
   contactInfo = contantInfo;
 
   @ViewChild('document')
   public document!: ElementRef;
+  date = new Date();
   pdfName: string = '';
   public project: Project | null = null;
 
   constructor(
-    private projectService: ProjectService,
+    projectService: ProjectService,
     private yesNoDialogService: YesNoDialogService,
     public dialogRef: MatDialogRef<DocumentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { entries: WorkLogEntry[], workLog: WorkLog },
@@ -34,6 +35,12 @@ export class DocumentDialogComponent {
     this.pdfName = moment().format('YYYY.MM.DD') + ' - ' + data.workLog.projectName;
     projectService.get(data.workLog.projectId).subscribe(project => this.project = project);
   }
+
+  ngAfterViewInit(): void {
+    console.log('dimenzija ', this.document.nativeElement.offsetWidth);
+  }
+
+  
 
   cancel() {
     const data = new YesNoDialog($localize`Are you sure that you want to close this document?`);
