@@ -25,22 +25,23 @@
         </div>
 
 
+        <div class="row table-container">
+          <table>
+            <tr>
+              <th i18n>Product</th>
+              <th i18n>Amount</th>
+              <th i18n>Unit</th>
+              <!-- <th i18n>Note</th> -->
+            </tr>
+            <tr *ngFor="let entry of data.entries;">
+              <td>{{entry.productName}}</td>
+              <td class="text-end">{{entry.amount}}</td>
+              <td class="text-start">{{entry.unit}}</td>
+              <!-- <td>{{entry.note}}</td> -->
+            </tr>
+          </table>
+        </div>
 
-        <table>
-          <tr>
-            <th i18n>Product</th>
-            <th i18n>Amount</th>
-            <th i18n>Unit</th>
-            <!-- <th i18n>Note</th> -->
-          </tr>
-          <tr *ngFor="let entry of data.entries;">
-            <td>{{entry.productName}}</td>
-            <td class="text-end">{{entry.amount}}</td>
-            <td class="text-start">{{entry.unit}}</td>
-            <!-- <td>{{entry.note}}</td> -->
-          </tr>
-
-        </table>
         <div #signContainer class="row signatures">
           <div class="bottom signatures-area">
             <span class="signature-data ml-1">
