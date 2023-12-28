@@ -8,7 +8,7 @@ import * as moment from 'moment';
 import { WorkLog } from 'src/app/work-log/work-log.model';
 import { ProjectService } from 'src/app/project/project.service';
 import { Project } from 'src/app/project/project.model';
-import { YesNoDialog, YesNoDialogService } from 'src/app/shared';
+import { NotificationsService, YesNoDialog, YesNoDialogService } from 'src/app/shared';
 import { contantInfo } from './contact-info';
 
 
@@ -29,6 +29,7 @@ export class DocumentDialogComponent implements AfterViewInit{
   constructor(
     projectService: ProjectService,
     private yesNoDialogService: YesNoDialogService,
+    private notificationService: NotificationsService,
     public dialogRef: MatDialogRef<DocumentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { entries: WorkLogEntry[], workLog: WorkLog },
   ) {
@@ -75,6 +76,8 @@ export class DocumentDialogComponent implements AfterViewInit{
         pdf.text(moment().format('DD.MM.YYYY'), 25, 25);
         pdf.addImage(result, 'PNG', 25, 50, width, height);
         pdf.save(this.pdfName + '.pdf');
+        this.notificationService.showInfo($localize`Document is downloaded.`);
+        this.dialogRef.close();
       })
       .catch(error => {
         console.error(error);
