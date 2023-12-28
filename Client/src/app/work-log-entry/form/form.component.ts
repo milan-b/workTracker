@@ -127,10 +127,13 @@ export class FormComponent {
   }
 
   onSubmit(): void {
-    if (this.form.valid && !this.childProductForms.some(f => !f.valid)) {
+    //INFO there is nothing to be invalid in childProductForms 
+    if (this.form.valid) {
       let data = [this.getModelFromForm(this.form)]
       this.childProductForms.forEach(form => {
-        data.push(this.getModelFromForm(form));
+        if (form.value.amount! > 0) {
+          data.push(this.getModelFromForm(form));
+        }
       });
       let logsForUpdate: WorkLogEntry[] = [];
       let logsForCreate: WorkLogEntry[] = [];
@@ -142,17 +145,17 @@ export class FormComponent {
         }
       });
       let observables: Observable<Object>[] = [];
-      if(logsForCreate.length > 0){
+      if (logsForCreate.length > 0) {
         observables.push(this.workLogEntryService.create(logsForCreate));
       }
-      if(logsForUpdate.length > 0){
+      if (logsForUpdate.length > 0) {
         observables.push(this.workLogEntryService.update(logsForUpdate));
       }
-      
+
       combineLatest(observables).subscribe(() => {
-          this.notificationService.showInfo($localize`Work log entry is saved.`);
-          this.goBack();
-        });
+        this.notificationService.showInfo($localize`Work log entry is saved.`);
+        this.goBack();
+      });
       // let request = this.id ?
       //   this.workLogEntryService.update(data) :
       //   this.workLogEntryService.create(data);
