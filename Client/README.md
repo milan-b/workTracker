@@ -29,6 +29,8 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build --localize` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+For deploy to mtel switch to branch `mtel`. Their server does not suport all requests types.
+
 ## Deploy to fierbase - it's not working there
 Enable `ng add @angular/fire`
 Run    `ng deploy`
