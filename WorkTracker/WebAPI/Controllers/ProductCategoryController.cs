@@ -44,7 +44,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
-        [HttpPut("{id:int:min(1)}")]
+        [HttpPost("put/{id:int:min(1)}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] ProductCategoryIDTO productCategoryDTO)
         {
             var productCategory = await _repository.ProductCategory.FindByCondition(o => o.Id == id).FirstOrDefaultAsync();
@@ -58,7 +58,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id:int:min(1)}")]
+        [HttpPost("delete/{id:int:min(1)}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             if(id == 1)

@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
-        [HttpPut("{id:int:min(1)}")]
+        [HttpPost("put/{id:int:min(1)}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] ProjectIDTO projectDTO)
         {
             var project = await _repository.Project.FindByCondition(o => o.Id == id).FirstOrDefaultAsync();

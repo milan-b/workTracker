@@ -60,7 +60,7 @@ export class DataService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.http.put(environment.apiUrl + url, data, httpOptions);
+    return this.http.post(environment.apiUrl + this.addVerbBeforeId('put', url), data, httpOptions);
   }
 
   putNoData(url: string): Observable<Object> {
@@ -69,10 +69,17 @@ export class DataService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.http.put(environment.apiUrl + url, null, httpOptions);
+    return this.http.post(environment.apiUrl + this.addVerbBeforeId('put', url), null, httpOptions);
   }
 
   delete(url: string): Observable<Object> {
-    return this.http.delete(environment.apiUrl + url);
+    return this.http.post(environment.apiUrl + this.addVerbBeforeId('delete', url), {});
+  }
+
+  private addVerbBeforeId(verb: string, url: string): string{
+    let path = url.split('/');
+    return path.length > 1 ?
+      path[0] + '/' + verb + '/' + path[1] :
+      path[0] + '/' + verb;
   }
 }

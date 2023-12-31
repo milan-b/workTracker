@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
             return Ok(workLog.Id);
         }
 
-        [HttpPut("{id}")]
+        [HttpPost("put/{id}")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] WorkLogIDTO workLogDTO)
         {
             var workLog = await _repository.WorkLog.FindByCondition(o => o.Id == id).FirstOrDefaultAsync();
@@ -61,7 +61,7 @@ namespace WebAPI.Controllers
             return Ok(workLog.Id);
         }
 
-        [HttpPut("{id}/approve")]
+        [HttpPost("put/{id}/approve")]
         public async Task<IActionResult> Approve([FromRoute] Guid id)
         {
             var workLog = await _repository.WorkLog.FindByCondition(o => o.Id == id).FirstOrDefaultAsync();

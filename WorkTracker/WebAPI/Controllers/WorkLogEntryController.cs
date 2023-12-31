@@ -48,7 +48,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPost("put")]
         public async Task<IActionResult> Update([FromBody] List<WorkLogEntryIDTO> workLogEntriesDTO)
         {
             List<WorkLogEntry> workLogEntries = workLogEntriesDTO.ToDAO();
@@ -60,7 +60,7 @@ namespace WebAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete("{workLogEntryId}")]
+        [HttpPost("delete/{workLogEntryId}")]
         public async Task<IActionResult> Delete([FromRoute] Guid worklogEntryId)
         {
             var workLogEntry = await _repository.WorkLogEntry.FindByCondition(o => o.Id == worklogEntryId)
