@@ -10,10 +10,12 @@ namespace Repository
     { 
         private RepositoryContext _repoContext; 
         private IProjectRepository _project;
+        private IPersonRepository _person;
         private IProductRepository _product;
         private IProductCategoryRepository _productCategory;
         private IWorkLogRepository _workLog;
-        private IWorkLogProductRepository _workLogEntry;
+        private IWorkLogProductRepository _workLogProduct;
+        private IWorkLogPersonRepository _workLogPerson;
 
         public RepositoryWrapper(RepositoryContext repositoryContext)
         {
@@ -32,6 +34,19 @@ namespace Repository
                 return _project; 
             } 
         }
+
+        public IPersonRepository Person
+        {
+            get
+            {
+                if (_person == null)
+                {
+                    _person = new PersonRepository(_repoContext);
+                }
+                return _person;
+            }
+        }
+
         public IProductRepository Product
         {
             get
@@ -70,14 +85,26 @@ namespace Repository
         {
             get
             {
-                if (_workLogEntry == null)
+                if (_workLogProduct == null)
                 {
-                    _workLogEntry = new WorkLogEntryRepository(_repoContext);
+                    _workLogProduct = new WorkLogProductRepository(_repoContext);
                 }
-                return _workLogEntry;
+                return _workLogProduct;
             }
         }
-        
+
+        public IWorkLogPersonRepository WorkLogPerson
+        {
+            get
+            {
+                if (_workLogPerson == null)
+                {
+                    _workLogPerson = new WorkLogPersonRepository(_repoContext);
+                }
+                return _workLogPerson;
+            }
+        }
+
         public async Task SaveAsync() 
         {
             await _repoContext.SaveChangesAsync();

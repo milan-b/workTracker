@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    public class WorkLogEntryRepository : RepositoryBase<WorkLogProduct>, IWorkLogProductRepository
+    public class WorkLogPersonRepository : RepositoryBase<WorkLogPerson>, IWorkLogPersonRepository
     {
-        public WorkLogEntryRepository(RepositoryContext repositoryContext)
+        public WorkLogPersonRepository(RepositoryContext repositoryContext)
             : base(repositoryContext)
         {
         }

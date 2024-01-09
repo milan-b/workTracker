@@ -10,9 +10,11 @@ namespace Contracts
     { 
         IProductRepository Product { get; }
         IProjectRepository Project { get; }
+        IPersonRepository Person { get; }
         IProductCategoryRepository ProductCategory { get; }
         IWorkLogRepository WorkLog { get; }
         IWorkLogProductRepository WorkLogProduct { get; }
+        IWorkLogPersonRepository WorkLogPerson { get; }
 
 
         Task SaveAsync(); 

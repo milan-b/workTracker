@@ -13,6 +13,7 @@ namespace Entities
         {
         }
         public DbSet<Project>? Projects { get; set; }
+        public DbSet<Person>? Persons { get; set; }
         public DbSet<Product>? Products { get; set; }
         public DbSet<WorkLog>? WorkLogs { get; set; }
         public DbSet<WorkLogProduct>? WorkLogEntries { get; set; }
@@ -32,6 +33,9 @@ namespace Entities
             #region Query Filter
 
             modelBuilder.Entity<Project>()
+                .HasQueryFilter(p => !p.IsDeleted);
+
+            modelBuilder.Entity<Person>()
                 .HasQueryFilter(p => !p.IsDeleted);
 
             modelBuilder.Entity<Product>()
