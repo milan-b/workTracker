@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Entities.Models
 {
-    [Table("work_log_entry")]
-    public class WorkLogEntry: BaseEntity
+    [Table("work_log_product")]
+    public class WorkLogProduct: BaseEntity
     {
         public Guid Id { get; set; }
 

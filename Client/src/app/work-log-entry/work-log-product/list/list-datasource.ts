@@ -2,20 +2,20 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, Subject, merge } from 'rxjs';
-import { WorkLogEntry } from '../work-log-entry.model';
-import { WorkLogEntryService } from '../work-log-entry.service';
+import { WorkLogProduct } from '../work-log-product.model';
+import { WorkLogProductService } from '../work-log-product.service';
 
 /**
  * Data source for the List view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class ListDataSource extends DataSource<WorkLogEntry> {
-  data: WorkLogEntry[] = [];
+export class ListDataSource extends DataSource<WorkLogProduct> {
+  data: WorkLogProduct[] = [];
   sort: MatSort | undefined;
-  private data$: Subject<WorkLogEntry[] | undefined> = new Subject();
+  private data$: Subject<WorkLogProduct[] | undefined> = new Subject();
 
-  constructor(private workLogEntryService: WorkLogEntryService, private id: string) {
+  constructor(private workLogEntryService: WorkLogProductService, private id: string) {
     super();
     this.refreshData();
   }
@@ -29,7 +29,7 @@ export class ListDataSource extends DataSource<WorkLogEntry> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<WorkLogEntry[]> {
+  connect(): Observable<WorkLogProduct[]> {
     if (this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
@@ -59,7 +59,7 @@ export class ListDataSource extends DataSource<WorkLogEntry> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: WorkLogEntry[]): WorkLogEntry[] {
+  private getSortedData(data: WorkLogProduct[]): WorkLogProduct[] {
     if (!this.sort || !this.sort.active || this.sort.direction === '') {
       return data;
     }

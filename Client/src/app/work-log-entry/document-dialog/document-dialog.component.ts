@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit, OnDestroy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { WorkLogEntry } from '../work-log-entry.model';
+import { WorkLogProduct } from '../work-log-product/work-log-product.model';
 
 import domToImage from 'dom-to-image';
 import { jsPDF, jsPDFOptions } from 'jspdf';
@@ -31,7 +31,7 @@ export class DocumentDialogComponent implements AfterViewInit{
     private yesNoDialogService: YesNoDialogService,
     private notificationService: NotificationsService,
     public dialogRef: MatDialogRef<DocumentDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { entries: WorkLogEntry[], workLog: WorkLog },
+    @Inject(MAT_DIALOG_DATA) public data: { entries: WorkLogProduct[], workLog: WorkLog },
   ) {
     this.pdfName = moment().format('YYYY.MM.DD') + ' - ' + data.workLog.projectName;
     projectService.get(data.workLog.projectId).subscribe(project => this.project = project);

@@ -13,6 +13,10 @@ namespace Entities.DataTransferObjects.Incoming
         [Required]
         public int ProjectId { get; set; }
 
+        public string Types { get; set; }
+
+        public string Note { get; set; }
+
         //USER ID is missing
 
     }

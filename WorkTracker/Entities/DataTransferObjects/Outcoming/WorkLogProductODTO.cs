@@ -1,27 +1,21 @@
-﻿
+﻿using Entities.Models;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities.DataTransferObjects.Incoming
+namespace Entities.DataTransferObjects.Outcoming
 {
-    public record class WorkLogEntryIDTO
+    public record class WorkLogProductODTO
     {
+        public Guid Id { get; set; }
 
-        public Guid? Id { get; set; }
-
-        [Required]
         public Guid WorkLogId { get; set; }
 
-        [Required]
         public int ProductId { get; set; }
-
-        [Required]
         public decimal Amount { get; set; }
 
-        [Required]
         public String? Unit { get; set; }
 
         public String? Note { get; set; }
-
     }
 
 }

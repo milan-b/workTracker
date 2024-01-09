@@ -23,7 +23,11 @@ namespace Entities.Models
         public int ProjectId { get; set; }
         public Project? Project { get; set; }
 
-        public ICollection<WorkLogEntry>? WorkLogEntries { get; set; }
+        public string Types { get; set; }
+
+        public string Note { get; set; }
+
+        public ICollection<WorkLogProduct>? WorkLogEntries { get; set; }
 
         //TODO add USER
     }

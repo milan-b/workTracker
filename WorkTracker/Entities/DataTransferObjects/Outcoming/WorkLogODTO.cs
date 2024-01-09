@@ -6,6 +6,8 @@
         public DateTime Date { get; set; }
         public bool IsApproved { get; set; }
         public int ProjectId { get; set; }
+        public string Types { get; set; }
+        public string Note { get; set; }
     }
 
 }

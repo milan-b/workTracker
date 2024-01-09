@@ -139,8 +139,16 @@ namespace WebAPI.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("ProjectId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Types")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("TEXT");
@@ -152,7 +160,7 @@ namespace WebAPI.Migrations
                     b.ToTable("work_log");
                 });
 
-            modelBuilder.Entity("Entities.Models.WorkLogEntry", b =>
+            modelBuilder.Entity("Entities.Models.WorkLogProduct", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -189,7 +197,7 @@ namespace WebAPI.Migrations
 
                     b.HasIndex("WorkLogId");
 
-                    b.ToTable("work_log_entry");
+                    b.ToTable("work_log_product");
                 });
 
             modelBuilder.Entity("Entities.Models.Product", b =>
@@ -231,7 +239,7 @@ namespace WebAPI.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("Entities.Models.WorkLogEntry", b =>
+            modelBuilder.Entity("Entities.Models.WorkLogProduct", b =>
                 {
                     b.HasOne("Entities.Models.Product", "Product")
                         .WithMany()

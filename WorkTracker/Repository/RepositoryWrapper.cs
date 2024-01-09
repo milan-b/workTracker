@@ -13,7 +13,7 @@ namespace Repository
         private IProductRepository _product;
         private IProductCategoryRepository _productCategory;
         private IWorkLogRepository _workLog;
-        private IWorkLogEntryRepository _workLogEntry;
+        private IWorkLogProductRepository _workLogEntry;
 
         public RepositoryWrapper(RepositoryContext repositoryContext)
         {
@@ -66,7 +66,7 @@ namespace Repository
                 return _workLog;
             }
         }
-        public IWorkLogEntryRepository WorkLogEntry
+        public IWorkLogProductRepository WorkLogProduct
         {
             get
             {

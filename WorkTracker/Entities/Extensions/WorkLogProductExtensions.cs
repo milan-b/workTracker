@@ -4,9 +4,9 @@ using Entities.Models;
 
 namespace Entities.Extensions
 {
-    public static class WorkLogEntryExtensions
+    public static class WorkLogProductExtensions
     {
-        public static void Map(this WorkLogEntry workLogEntry, WorkLogEntryIDTO workLogEntryDTO)
+        public static void Map(this WorkLogProduct workLogEntry, WorkLogProductIDTO workLogEntryDTO)
         {
             workLogEntry.Unit = workLogEntryDTO.Unit;
             workLogEntry.Amount = workLogEntryDTO.Amount;
@@ -20,18 +20,18 @@ namespace Entities.Extensions
             
         }
 
-        public static List<WorkLogEntry> ToDAO(this List<WorkLogEntryIDTO> workLogEntriesDTO) {
+        public static List<WorkLogProduct> ToDAO(this List<WorkLogProductIDTO> workLogEntriesDTO) {
             return workLogEntriesDTO.Select(dto =>
             {
-                var workLogEntry = new WorkLogEntry();
+                var workLogEntry = new WorkLogProduct();
                 workLogEntry.Map(dto);
                 return workLogEntry;
             }).ToList();
         }
 
-        public static WorkLogEntryODTO ToDTO(this WorkLogEntry workLogEntry)
+        public static WorkLogProductODTO ToDTO(this WorkLogProduct workLogEntry)
         {
-            return new WorkLogEntryODTO
+            return new WorkLogProductODTO
             {
                 Unit = workLogEntry.Unit,
                 Amount = workLogEntry.Amount,

@@ -15,7 +15,7 @@ namespace Entities
         public DbSet<Project>? Projects { get; set; }
         public DbSet<Product>? Products { get; set; }
         public DbSet<WorkLog>? WorkLogs { get; set; }
-        public DbSet<WorkLogEntry>? WorkLogEntries { get; set; }
+        public DbSet<WorkLogProduct>? WorkLogEntries { get; set; }
         public DbSet<ProductCategory>? ProductCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,7 +40,7 @@ namespace Entities
             modelBuilder.Entity<WorkLog>()
                 .HasQueryFilter(p => !p.IsDeleted);
 
-            modelBuilder.Entity<WorkLogEntry>()
+            modelBuilder.Entity<WorkLogProduct>()
                 .HasQueryFilter(p => !p.IsDeleted);
 
             modelBuilder.Entity<ProductCategory>()

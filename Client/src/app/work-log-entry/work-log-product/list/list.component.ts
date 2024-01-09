@@ -3,14 +3,14 @@ import { MatTable } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { ListDataSource } from './list-datasource';
-import { WorkLogEntryService } from '../work-log-entry.service';
-import { WorkLogEntry } from '../work-log-entry.model';
+import { WorkLogProductService } from '../work-log-product.service';
+import { WorkLogProduct } from '../work-log-product.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as routs from 'src/app/routs';
 import { WorkLogService } from 'src/app/work-log/work-log.service';
 import { WorkLog } from 'src/app/work-log/work-log.model';
 import { NotificationsService, YesNoDialog, YesNoDialogService } from 'src/app/shared';
-import { DocumentDialogComponent } from '../document-dialog/document-dialog.component';
+import { DocumentDialogComponent } from '../../document-dialog/document-dialog.component';
 
 @Component({
   selector: 'app-list',
@@ -19,12 +19,12 @@ import { DocumentDialogComponent } from '../document-dialog/document-dialog.comp
 })
 export class ListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<WorkLogEntry>;
+  @ViewChild(MatTable) table!: MatTable<WorkLogProduct>;
   dataSource: ListDataSource | undefined;
   workLog: WorkLog | undefined;
 
   constructor(
-    private workLogEntryService: WorkLogEntryService,
+    private workLogEntryService: WorkLogProductService,
     private workLogService: WorkLogService,
     private notificationService: NotificationsService,
     private route: ActivatedRoute,

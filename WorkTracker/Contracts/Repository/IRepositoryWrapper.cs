@@ -12,7 +12,7 @@ namespace Contracts
         IProjectRepository Project { get; }
         IProductCategoryRepository ProductCategory { get; }
         IWorkLogRepository WorkLog { get; }
-        IWorkLogEntryRepository WorkLogEntry { get; }
+        IWorkLogProductRepository WorkLogProduct { get; }
 
 
         Task SaveAsync(); 

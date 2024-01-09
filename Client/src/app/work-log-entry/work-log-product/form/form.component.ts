@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/product/product.model';
 import { ProductService } from 'src/app/product/product.service';
-import { WorkLogEntry } from '../work-log-entry.model';
-import { WorkLogEntryService } from '../work-log-entry.service';
+import { WorkLogProduct } from '../work-log-product.model';
+import { WorkLogProductService } from '../work-log-product.service';
 import { NotificationsService, TreeNode, YesNoDialog, YesNoDialogService } from 'src/app/shared';
 import * as routs from 'src/app/routs';
 import { ProductCategory, ProductCategoryService, SelectDialogComponent } from 'src/app/product-category';
@@ -36,7 +36,7 @@ export class FormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private workLogEntryService: WorkLogEntryService,
+    private workLogEntryService: WorkLogProductService,
     private notificationService: NotificationsService,
     private productCategoryService: ProductCategoryService,
     private router: Router,
@@ -135,8 +135,8 @@ export class FormComponent {
           data.push(this.getModelFromForm(form));
         }
       });
-      let logsForUpdate: WorkLogEntry[] = [];
-      let logsForCreate: WorkLogEntry[] = [];
+      let logsForUpdate: WorkLogProduct[] = [];
+      let logsForCreate: WorkLogProduct[] = [];
       data.forEach(log => {
         if (log.id) {
           logsForUpdate.push(log);
@@ -184,7 +184,7 @@ export class FormComponent {
     this.router.navigate([routs.WORK_LOG_ENTRY + '/' + this.workLogId]);
   }
 
-  private getModelFromForm(form: FormGroup): WorkLogEntry {
+  private getModelFromForm(form: FormGroup): WorkLogProduct {
     return {
       id: this.id,
       workLogId: this.workLogId!,

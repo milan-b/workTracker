@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { DataService } from '../shared';
+import { DataService } from '../../shared';
 import { Observable, map, zip} from 'rxjs';
-import { WorkLogEntry } from './work-log-entry.model';
-import { ProductService } from '../product/product.service';
+import { WorkLogProduct } from './work-log-product.model';
+import { ProductService } from '../../product/product.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class WorkLogEntryService {
+export class WorkLogProductService {
 
   constructor(private dataService: DataService, private productSerice: ProductService) { }
 
-  private url = 'worklogentry';
+  private url = 'worklogproduct';
 
-  getAll(workLogId: string): Observable<WorkLogEntry[] | undefined> {
-    return zip(this.dataService.getChildren<WorkLogEntry[]>(this.url, workLogId), this.productSerice.getAllAsMap())
+  getAll(workLogId: string): Observable<WorkLogProduct[] | undefined> {
+    return zip(this.dataService.getChildren<WorkLogProduct[]>(this.url, workLogId), this.productSerice.getAllAsMap())
       .pipe(
         map(items => {
           console.log('entrys: \n', items[0].body);
@@ -29,18 +29,18 @@ export class WorkLogEntryService {
       );
   }
 
-  get(workLogId: string, id: string):Observable<WorkLogEntry | undefined>{
+  get(workLogId: string, id: string):Observable<WorkLogProduct | undefined>{
     return this.getAll(workLogId)
       .pipe(
         map(workLogEtntres=> workLogEtntres?.find(i => i.id === id))
       );
   }
 
-  create(workLogEntry: WorkLogEntry[]):Observable<Object>{
+  create(workLogEntry: WorkLogProduct[]):Observable<Object>{
     return this.dataService.post(this.url, workLogEntry);
   }
 
-  update(workLogEntries: WorkLogEntry[]): Observable<Object>{
+  update(workLogEntries: WorkLogProduct[]): Observable<Object>{
     return this.dataService.put(this.url, workLogEntries);
   }
 

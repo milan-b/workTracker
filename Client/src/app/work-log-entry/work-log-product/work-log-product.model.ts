@@ -1,6 +1,6 @@
-import { WorkLog } from "../work-log/work-log.model";
+import { WorkLog } from "../../work-log/work-log.model";
 
-export interface WorkLogEntry {
+export interface WorkLogProduct {
     id: string | null;
     workLogId: string;
     //workLog?: WorkLog;
