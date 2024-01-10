@@ -1,0 +1,32 @@
+<form [formGroup]="personForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title><h3 >{{title}}</h3></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label i18n>First name</mat-label>
+            <input i18n-placeholder="First name" matInput placeholder="First name" formControlName="firstName">
+            <mat-error i18n *ngIf="personForm.controls['firstName'].hasError('required')">
+              First name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label i18n>Last name</mat-label>
+            <input i18n-placeholder="Last name" matInput placeholder="Last name" formControlName="lastName">
+            <mat-error i18n *ngIf="personForm.controls['lastName'].hasError('required')">
+              Last name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" i18n>Save</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

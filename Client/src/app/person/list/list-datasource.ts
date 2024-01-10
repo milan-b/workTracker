@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 import { PersonService } from '../person.service';
-import { Person } from '../product.model';
+import { Person } from '../person.model';
 
 
 export class ListDataSource extends DataSource<Person> {
@@ -23,8 +23,11 @@ export class ListDataSource extends DataSource<Person> {
   connect(): Observable<Person[]> {
     if (this.sort) {
       return merge(this.personService.getAll(), this.sort.sortChange)
-        .pipe(map(() => {
-          return this.getSortedData([...this.data ]);
+        .pipe(map(data => {
+          if(Array.isArray(data)){
+            this.data = [...data]; 
+          }
+          return this.getSortedData(this.data);
         }));
     } else {
       throw Error('Please set sort on the data source before connecting.');
@@ -49,7 +52,7 @@ export class ListDataSource extends DataSource<Person> {
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
+        case 'name': return compare(a.name!, b.name!, isAsc);
         case 'id': return compare(+a.id!, +b.id!, isAsc);
         default: return 0;
       }

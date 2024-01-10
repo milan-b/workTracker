@@ -3,7 +3,7 @@ import { MatTable } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ListDataSource } from './list-datasource';
-import { Person } from '../product.model';
+import { Person } from '../person.model';
 import { PersonService } from '../person.service';
 
 @Component({
