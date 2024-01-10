@@ -14,3 +14,5 @@
     export const WORK_LOG = 'work-log';
 
     export const WORK_LOG_ENTRY = 'wrok-log-entry';
+
+    export const PERSON = 'person';

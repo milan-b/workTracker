@@ -26,6 +26,10 @@ const routes: Routes = [
     path: routs.WORK_LOG_ENTRY, 
     loadChildren: () => import('./work-log-entry/work-log-entry.module').then(m => m.WorkLogEntryModule) 
   },
+  { 
+    path: routs.PERSON, 
+    loadChildren: () => import('./person/person.module').then(m => m.PersonModule) 
+  },
   
 
   { path: '**', redirectTo: routs.HOME }
