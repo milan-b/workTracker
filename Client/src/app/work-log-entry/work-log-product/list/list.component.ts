@@ -10,10 +10,9 @@ import * as routs from 'src/app/routs';
 import { WorkLogService } from 'src/app/work-log/work-log.service';
 import { WorkLog } from 'src/app/work-log/work-log.model';
 import { NotificationsService, YesNoDialog, YesNoDialogService } from 'src/app/shared';
-import { DocumentDialogComponent } from '../../document-dialog/document-dialog.component';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-work-log-product',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
@@ -64,10 +63,6 @@ export class ListComponent implements AfterViewInit, OnInit {
     }
   }
 
-  goToEditWorkLog(){
-    this.router.navigate([routs.WORK_LOG + '/' + routs.EDIT_ID + this.workLog!.id!]);
-  }
-
   delete(workLogEntryId: string) {
     if (this.workLog!.isApproved) {
       this.notificationService.showInfo($localize`You can\'t change entries in approved work log.`);
@@ -83,28 +78,6 @@ export class ListComponent implements AfterViewInit, OnInit {
       });
     }
 
-  }
-
-  approveWorkLog() {
-    const dialogRef = this.dialog.open(DocumentDialogComponent, {
-      data:
-        {
-        entries: this.dataSource?.getData(),
-        workLog: this.workLog
-        },
-        disableClose: true
-      });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-    // if (this.workLog!.isApproved) {
-    //   this.notificationService.showInfo($localize`This work log is already approved.`)
-    // } else {
-    //   this.workLogService.approve(this.workLog!.id!).subscribe(() => {
-    //     this.workLog!.isApproved = true;
-    //     this.notificationService.showInfo($localize`Work log is approved.`);
-    //   });
-    // }
   }
 
 }

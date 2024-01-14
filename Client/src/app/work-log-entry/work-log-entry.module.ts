@@ -6,6 +6,7 @@ import { ListComponent } from './work-log-product/list/list.component';
 import { FormComponent } from './work-log-product/form/form.component';
 import { DocumentDialogComponent } from './document-dialog/document-dialog.component';
 import { SingPadComponent } from './sing-pad/sing-pad.component';
+import { WorkLogEntryComponent } from './work-log-entry.component';
 
 
 
@@ -14,7 +15,8 @@ import { SingPadComponent } from './sing-pad/sing-pad.component';
     ListComponent,
     FormComponent,
     DocumentDialogComponent,
-    SingPadComponent
+    SingPadComponent, 
+    WorkLogEntryComponent
   ],
   imports: [
     SharedModule,

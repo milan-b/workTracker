@@ -80,7 +80,7 @@ export class FormComponent {
         },
         error: () => {
           this.notificationService.showError($localize`Error while getting work log entry.`);
-          this.router.navigate([routs.WORK_LOG_ENTRY]);
+          this.router.navigate([routs.WORK_LOG_ENTRY], {queryParams: {tabIndex: '1'}});
         }
       })
     }
@@ -181,7 +181,7 @@ export class FormComponent {
   }
 
   goBack() {
-    this.router.navigate([routs.WORK_LOG_ENTRY + '/' + this.workLogId]);
+    this.router.navigate([routs.WORK_LOG_ENTRY + '/' + this.workLogId], {queryParams: {tabIndex: '1'}});
   }
 
   private getModelFromForm(form: FormGroup): WorkLogProduct {

@@ -1,29 +1,3 @@
-<mat-card>
-  <mat-card-content>
-    <div class="row">
-      <div *ngIf="workLog" class="col">
-        <span class="worklog">{{workLog.date | date}} - {{workLog.projectName}}</span>
-        <button color="basic" mat-icon-button (click)="goToEditWorkLog()">
-          <mat-icon>edit</mat-icon>
-        </button>
-      </div>
-      <div class="col">
-        <div class="ta-r">
-          <button mat-fab extended color="primary" (click)="approveWorkLog()" i18n>
-            <mat-icon fontIcon="{{workLog?.isApproved ? 'check_box' : 'check_box_outline_blank'}}">
-            </mat-icon>
-            Approve
-          </button>
-          <button class="ml-1" mat-fab color="primary" aria-label="Add new" (click)="goToCreate()">
-            <mat-icon>add</mat-icon>
-          </button>
-        </div>
-      </div>
-    </div>
-  </mat-card-content>
-</mat-card>
-
-
 <div class="mat-elevation-z8">
   <table mat-table class="full-width-table" matSort matSortActive="productName" matSortDirection="asc" aria-label="Elements">
 
@@ -67,3 +41,17 @@
   </table>
 
 </div>
+
+<mat-card>
+  <mat-card-content>
+    <div class="row">
+      <div class="col">
+        <div class="ta-c">
+          <button class="ml-1" mat-fab color="primary" aria-label="Add new" (click)="goToCreate()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -18,6 +18,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [],
@@ -56,7 +57,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatTreeModule,
     MatDialogModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTabsModule
   ]
 })
 export class MaterialModule { }

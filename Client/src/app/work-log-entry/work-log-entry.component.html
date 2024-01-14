@@ -1,0 +1,42 @@
+<mat-card>
+    <mat-card-content>
+      <div class="row">
+        <div *ngIf="workLog" class="col">
+          <span class="worklog">{{workLog.date | date}} - {{workLog.projectName}}</span>
+          <button color="basic" mat-icon-button (click)="goToEditWorkLog()">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+        <div class="col">
+          <div class="ta-r">
+            <button mat-fab extended color="primary" (click)="approveWorkLog()" i18n>
+              <mat-icon fontIcon="{{workLog?.isApproved ? 'check_box' : 'check_box_outline_blank'}}">
+              </mat-icon>
+              Approve
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+<!-- <div class="col mt-01">
+    <div class="ta-r">
+        <button mat-fab extended color="primary" (click)="approveWorkLog()" i18n>
+            <mat-icon fontIcon="{{workLog?.isApproved ? 'check_box' : 'check_box_outline_blank'}}">
+            </mat-icon>
+            Approve
+        </button>
+    </div>
+</div> -->
+
+<div class="col mt-01">
+    <mat-tab-group [selectedIndex]="tabIndex">
+        <mat-tab i18n-label="General info" label="General info">Content 1</mat-tab>
+        <mat-tab i18n-label="Material" label="Material">
+            <app-work-log-product></app-work-log-product>
+        </mat-tab>
+        <mat-tab i18n-label="Work hours" label="Work hours">Content 3</mat-tab>
+        <mat-tab i18n-label="Travel" label="Travel">Content 3</mat-tab>
+    </mat-tab-group>
+</div>
