@@ -16,7 +16,7 @@ import { NotificationsService, YesNoDialog, YesNoDialogService } from 'src/app/s
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements AfterViewInit, OnInit {
+export class WorkLogProductListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<WorkLogProduct>;
   dataSource: ListDataSource | undefined;
